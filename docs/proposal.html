@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<head>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+ <title>CS 184 Rasterizer</title>
+ <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+ <link href="https://fonts.googleapis.com/css?family=Open+Sans|Source+Sans+Pro" rel="stylesheet">
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css?family=Bungee+Hairline|Cinzel|Raleway" rel="stylesheet">
+<style type="text/css">
+	p, h5, li, figure {
+		font-family: "Comic Sans MS";
+	}
+	h1, h2, h3 {
+		text-align: center;
+		font-family: Papyrus;
+	}
+	.caption {
+		text-align: center;
+	}
+</style>
+</head>
+<body>
+<section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">CS 184 Final Project</h1>
+        </div>
+      </section>
+<div class="container">
+	<div>
+		<h2>Title, Summary, and Team Members</h2>
+		<p>
+        BLAH
+      	</p>
+	</div>
+	<div>
+		<h2>Problem Description</h2>
+		<p>
+        BLAH
+      	</p>
+	</div>
+	<div>
+		<h2>Goals and Deliverables</h2>
+		<p>
+        We plan to deliver a program that will be able to shade a 3d polygonal mesh with hatching lines in real time. The demo will include meshes ranging in complexity from simple shapes such as cubes and spheres to models such as the Stanford Bunny shaded to look like they were drawn using hatching lines. This we be accomplished through a combination of generating tonal art maps and determining the lapped patches to apply these maps to. Our metric for performance will be how “real time” our demo ends up being. We will be shooting for at least 24 fps. Our second metric will be how similar our generated hatching lines look to hand drawn ones. 
+      	</p>
+      	<p>
+      	Our first benchmark is to generate interactive demos using our hashing shader, but if we have more time, we will try to refine our shader by adding features like silhouette drawing or non-greyscale shading. We also will try to generate multiple tonal art maps to mimic different artistic shading styles like pointilism.
+      	</p>
+      	<figure class="figure">
+		  <img src="images/proposal/shading.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+		  <figcaption class="figure-caption">Our goal (taken from Real-Time Hatching)</figcaption>
+		</figure>
+	</div>
+	<div>
+		<h2>Schedule</h2>
+		<h5>First Week – Scaffolding and Begin Implantation</h5>
+		<p>
+		We’ll look more closely at the GLSL code for project 3-2 and see how we can build off it to create an interactive demo. We’ll also begin to figure out how to translate the methods outlined in the papers into code for generating tonal art maps.</p>
+		<h5>Second Week – Implement Tonal Art Maps</h5>
+		<p>We’ll begin to implement tonal art maps. When we are done, we should be able to shade simple shapes with hatching lines.</p>
+		<h5>Third Week – Implement Lapped Textures</h5>
+		<p>Implement the algorithm to find the lapped texture for general 3D meshes and apply our shaders to these patches. At this point we should be able to shade any arbitrary 3D mesh.</p>
+		<h5>Fourth Week – Silhouettes or slip week</h5>
+		<p>Implement silhouettes around our meshes to lead to even more “realistic” hatching renderings. If we are behind use this week to polish and finish up any leftover work.</p>
+	</div>
+	<div>
+		<h2>Resources</h2>
+		<ul>
+        <li><a href="http://hhoppe.com/hatching.pdf">Real Time Hatching</a></li>
+		<li><a href="http://hhoppe.com/lapped.pdf">Lapped Textures</a></li>
+		<li><a href="http://mrl.nyu.edu/~hertzman/hertzmann-intro3d.pdf">Introduction to 3D Non-Photorealistic Rendering: Silhouettes and Outlines </a></li>
+		</ul>
+		<p>
+		We plan on making our program available on Linux/MacOS and to use a combination of OpenGL and GLSL
+
+      	</p>
+	</div>
+
+</div>
+</body>
+
+</html>
