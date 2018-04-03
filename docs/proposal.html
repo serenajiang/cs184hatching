@@ -29,9 +29,7 @@
       </section>
 <div class="container">
 	<div>
-		<h2>Title, Summary, and Team Members</h2>
-		<h5>Title</h5>
-		<p>BLAHHH</p>
+		<h2>Photoreal at Heart</h2>
 		<h5>Summary</h5>
         <p>
         We will implement a shader that shades meshes to resemble artistic shading, with denser hatches representing shadows. By using this method, we will produce an interactive demo that renders meshes to look like a 3D line art sketch.
@@ -40,13 +38,16 @@
       	<ul>
       	<li>Serena Jiang (26417967)</li>
       	<li>Jacob Holesinger (26419985)</li>
-      	<li>Andrew Xu (BLAHHH)</li>
+      	<li>Andrew Xu (26767370)</li>
       	</ul>
 	</div>
 	<div>
 		<h2>Problem Description</h2>
 		<p>
-        BLAH
+        The goal of our project is to acheive a stylized shader that mimicks the way artists convey tone, shadow and form with pencil, pen or paint strokes. Stylized shaders such as the one we aim to create are important give artists and creaters more outlets of expression. Hopefully, our traditional media mimic provides an interesting option for those looking for new ways of conveying their ideas and artistic vision. There are a few technical challenges that we anticipate. First, the texture art map requires 6 texture reads per frame which could create a bottleneck in performance. The previous work that we will build off of acomplished this by encoding 3 grayscale texture maps into each rgb channel. If we hope to include colored strokes into our shader we will have to find another approach. Second, we will have to create our own texture art maps and stroke designs which could prove challenging to make appealing. Additionally it will be hard to find the right tone based off of a mix of color value, shadow and actuall object texture at each point. Finally, in order to extend our shader past primitive shapes to more complex geometry, the previous apporach had to create a scheme of breaking the surface into patches to then texture. In order to show the form of the underlying object, the hatches have to point with its curvature requireing a parameterization of the object. For primitive shapes such as spheres, this parameterization is easy but for more complicated objects we will need to break the surface into topological disks each with its own parameterization. Since the hatching is very high frequency, the boundaries between disks shouldn't be very noticable so we only have to worry about how to divide our mesh surface.
+      	</p>
+      	<p>
+      		In our solution we will have to make texture art maps, design a way of chosing tone and create a scheme for patching meshes. Texture art maps will be made by first chosing a style of hatching and creating a sparsly hatched light tone. Darker tones will then be made by incrementally adding more strokes to the previous tone. To allow for the mip-map like functionality of increasing density for closer objects we will then have to make increasingly dense copies of each tone. Tone choice will be acomplished using the alignment of surface normals with the light source averaged with a value dictated by the surface color. To acomplish the tiling of disks to show form on complex objects we will follow our references approach of using lapped texturing.
       	</p>
 	</div>
 	<div>
@@ -80,6 +81,7 @@
         <li><a href="http://hhoppe.com/hatching.pdf">Real Time Hatching</a></li>
 		<li><a href="http://hhoppe.com/lapped.pdf">Lapped Textures</a></li>
 		<li><a href="http://mrl.nyu.edu/~hertzman/hertzmann-intro3d.pdf">Introduction to 3D Non-Photorealistic Rendering: Silhouettes and Outlines </a></li>
+		<li><a href="http://hhoppe.com/lapped.pdf">Lapped Textures</a></li>
 		</ul>
 		<p>
 		We plan on making our program available on Linux/MacOS and to use a combination of OpenGL and GLSL
