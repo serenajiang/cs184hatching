@@ -1,5 +1,6 @@
 precision highp float;
 
+uniform sampler2D texture03;
 uniform sampler2D texture13;
 uniform sampler2D texture23;
 uniform sampler2D texture33;
@@ -20,17 +21,24 @@ void main() {
   vec3 color = vec3(0.3,0.3,0.3)
   + 0.6 * lIntensity/r2 * max(0.0, dot(normalize(fNormal), normalize(lPosition)))
   + 0.4 * lIntensity/r2 * pow(max(0.0, dot(normalize(fNormal), h)), 50.0);
-  float brightness = dot(color, vec3(1.,0.,0.));
-  if (brightness < .2) {
-    gl_FragColor = texture2D(texture53, fUv);
-  } else if (brightness < .4){
-    gl_FragColor = texture2D(texture43, fUv);
-  } else if (brightness < .6){
-    gl_FragColor = texture2D(texture33, fUv);
-  } else if (brightness < .8){
-    gl_FragColor = texture2D(texture23, fUv);
-  } else {
-    gl_FragColor = texture2D(texture13, fUv);
+  float brightness = dot(color, vec3(1.,0.,0.)) * 5.;
+  if (brightness <= 1.) {
+    gl_FragColor = (1.-brightness)*texture2D(texture53, fUv) + brightness*texture2D(texture43, fUv);
+  }
+  else if (brightness <= 2.){
+    gl_FragColor = (2.-brightness)*texture2D(texture43, fUv) + (brightness-1.)*texture2D(texture33, fUv);
+  }
+  else if (brightness <= 3.){
+    gl_FragColor = (3.-brightness)*texture2D(texture33, fUv) + (brightness-2.)*texture2D(texture23, fUv);
+  }
+  else if (brightness <= 4.){
+    gl_FragColor = (4.-brightness)*texture2D(texture23, fUv) + (brightness-3.)*texture2D(texture13, fUv);
+  }
+  else if (brightness <= 5.){
+    gl_FragColor = (5.-brightness)*texture2D(texture13, fUv) + (brightness-4.)*texture2D(texture03, fUv);
+  }
+  else if (brightness <= 6.){
+    gl_FragColor = (6.-brightness)*texture2D(texture03, fUv) + (brightness-5.)*1.1*vec4(1,1,1,1);
   }
 
 }

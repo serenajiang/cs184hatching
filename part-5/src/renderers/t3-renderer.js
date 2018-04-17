@@ -9,6 +9,7 @@ import texture4 from '../textures/test/ayy43.bmp';
 import texture3 from '../textures/test/ayy33.bmp';
 import texture2 from '../textures/test/ayy23.bmp';
 import texture1 from '../textures/test/ayy13.bmp';
+import texture0 from '../textures/test/ayy03.bmp';
 
 export default class extends Renderer {
   initScene() {
@@ -42,9 +43,14 @@ export default class extends Renderer {
       type: "t",
       value: tex1//new THREE.TextureLoader().load(texture)
     };
+    var tex0 = new THREE.TextureLoader().load(texture0);
+    this.uniforms['texture03'] = {
+      type: "t",
+      value: tex0//new THREE.TextureLoader().load(texture)
+    };
 
-    //const geometry = new THREE.SphereGeometry(5, 32, 32);
-    const geometry = new THREE.TeapotBufferGeometry(4, 32, 32);
+    const geometry = new THREE.CylinderGeometry(5, 5, 10, 32);
+    // const geometry = new THREE.CylinderGeometry(4, 32, 32);
     const material = this.createShaderMaterial(vert, frag);
     const cube = new THREE.Mesh(geometry, material);
     this.scene.add(cube);
