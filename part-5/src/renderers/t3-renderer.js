@@ -1,6 +1,5 @@
-import THREE from '../lib/three';
+// import THREE from '../lib/three';
 import Renderer from '../lib/renderer';
-
 import vert from '../shaders/task-3/texture.vert';
 import frag from '../shaders/task-3/texture.frag';
 
@@ -10,6 +9,8 @@ import texture3 from '../textures/test/ayy33.bmp';
 import texture2 from '../textures/test/ayy23.bmp';
 import texture1 from '../textures/test/ayy13.bmp';
 import texture0 from '../textures/test/ayy03.bmp';
+var THREE = require('three')
+var OrbitControls = require('three-orbit-controls')(THREE)
 
 export default class extends Renderer {
   initScene() {
@@ -18,6 +19,17 @@ export default class extends Renderer {
       return;
     }
     this.setLight();
+
+    // var controls = new OrbitControls(this.camera);
+    // controls.addEventListener( 'change', light_update );
+    //
+    // function light_update()
+    // {
+    //     this.light.position.copy( this.camera.position );
+    // }
+    // this.updateCamera();
+
+
     var tex5 = new THREE.TextureLoader().load(texture5);
     this.uniforms['texture53'] = {
       type: "t",
@@ -49,8 +61,9 @@ export default class extends Renderer {
       value: tex0//new THREE.TextureLoader().load(texture)
     };
 
-    const geometry = new THREE.CylinderGeometry(5, 5, 10, 32);
-    // const geometry = new THREE.CylinderGeometry(4, 32, 32);
+    // const geometry = new THREE.CylinderGeometry(5, 5, 32, 64);
+
+    const geometry = new THREE.TeapotBufferGeometry(4, 32, 32);
     const material = this.createShaderMaterial(vert, frag);
     const cube = new THREE.Mesh(geometry, material);
     this.scene.add(cube);
