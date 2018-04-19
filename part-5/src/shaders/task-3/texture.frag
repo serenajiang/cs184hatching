@@ -27,8 +27,10 @@ void main() {
   float brightness = dot(color, vec3(1./3.,1./3.,1./3.)) * 6.;
   // gl_FragColor = vec4(color, 1);
   brightness = min(brightness, 6.0);
-
-  if (brightness <= 1.) {
+  if (dot(fNormal, normalize(cameraPosition - fPosition)) < .05) {
+    gl_FragColor = vec4(0.,0.,0.,1);
+  }
+  else if (brightness <= 1.) {
     gl_FragColor = (1.-brightness)*texture2D(texture53, fUv) + brightness*texture2D(texture43, fUv);
   }
   else if (brightness <= 2.){
