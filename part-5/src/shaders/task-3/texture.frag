@@ -23,11 +23,10 @@ void main() {
   float r2 = distance(lPosition, fPosition) * distance(lPosition, fPosition);
   vec3 color = vec3(0.15,0.15,0.15)
   + 0.75 * lIntensity/r2 * max(0.0, dot(normalize(fNormal), normalize(lPosition)))
-  + 0.4 * lIntensity/r2 * pow(max(0.0, dot(normalize(fNormal), h)), 60.0);
-  float brightness = dot(color, vec3(1./3.,1./3.,1./3.)) * 5.;
+  + 0.00 * lIntensity/r2 * pow(max(0.0, dot(normalize(fNormal), h)), 60.0);
+  float brightness = dot(color, vec3(1./3.,1./3.,1./3.)) * 6.;
   // gl_FragColor = vec4(color, 1);
   brightness = min(brightness, 6.0);
-
 
   if (brightness <= 1.) {
     gl_FragColor = (1.-brightness)*texture2D(texture53, fUv) + brightness*texture2D(texture43, fUv);
@@ -44,8 +43,8 @@ void main() {
   else if (brightness <= 5.){
     gl_FragColor = (5.-brightness)*texture2D(texture13, fUv) + (brightness-4.)*texture2D(texture03, fUv);
   }
-  else if (brightness <= 6.){
-    gl_FragColor = (6.-brightness)*texture2D(texture03, fUv) + (brightness-5.)*1.1*vec4(1,1,1,1);
+  else {
+    gl_FragColor = (6.-brightness)*texture2D(texture03, fUv) + (brightness-5.)*vec4(1.,1.,1.,1.);
   }
 
 }

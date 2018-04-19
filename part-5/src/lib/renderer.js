@@ -117,45 +117,48 @@ class Renderer {
     this.scene.add(object);
   }
 
-  setLight(x=25, y=15, z=25, r=1, g=1, b=1) {
+  setLight(fixed=false,x=25, y=15, z=25, r=1, g=1, b=1) {
 
     // FOR LIGHT INDEPENDENT OF CAMERA
-    const lGeometry = new THREE.BoxGeometry(1, 1, 1);
-    const lMaterial = new THREE.MeshBasicMaterial({ color: new THREE.Color(r, g, b) });
-    const light = new THREE.Mesh(lGeometry, lMaterial);
-    light.position.set(25, 15, 25);
+    if (!fixed) {
+      const lGeometry = new THREE.BoxGeometry(1, 1, 1);
+      const lMaterial = new THREE.MeshBasicMaterial({ color: new THREE.Color(r, g, b) });
+      const light = new THREE.Mesh(lGeometry, lMaterial);
+      light.position.set(25, 15, 25);
 
-    this.light = light;
-    this.uniforms['lPosition'] = {
-      t: 'vec3',
-      value: this.light.position
-    };
+      this.light = light;
+      this.uniforms['lPosition'] = {
+        t: 'vec3',
+        value: this.light.position
+      };
 
-    this.uniforms['lIntensity'] = {
-      t: 'vec3',
-      value: new THREE.Vector3(r * 1000, g * 1000, b * 1000)
+      this.uniforms['lIntensity'] = {
+        t: 'vec3',
+        value: new THREE.Vector3(r * 1000, g * 1000, b * 1000)
+      }
+    }
+    else {
+    // FOR LIGHT ATTACHED TO CAMERA
+      const light = new THREE.PointLight( 0xffffff, 1 );
+
+      this.camera.add(light );
+      this.scene.add(this.camera);
+      this.updateCamera();
+
+
+      this.light = light;
+      this.uniforms['lPosition'] = {
+        t: 'vec3',
+        value: this.camera.position
+      };
+
+      this.uniforms['lIntensity'] = {
+        t: 'vec3',
+        value: new THREE.Vector3(r * 100, g * 100, b * 100)
+      }
     }
   }
 
-    // // FOR LIGHT ATTACHED TO CAMERA
-    // const light = new THREE.PointLight( 0xffffff, 1 );
-    //
-    // this.camera.add(light );
-    // this.scene.add(this.camera);
-    //this.updateCamera();
-
-
-  //   this.light = light;
-  //   this.uniforms['lPosition'] = {
-  //     t: 'vec3',
-  //     value: this.camera.position
-  //   };
-  //
-  //   this.uniforms['lIntensity'] = {
-  //     t: 'vec3',
-  //     value: new THREE.Vector3(r * 100, g * 100, b * 100)
-  //   }
-  // }
 
   begin() {
     this.sysLast = 0;
