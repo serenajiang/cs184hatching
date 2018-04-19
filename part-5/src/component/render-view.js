@@ -17,8 +17,8 @@ class RenderView extends React.Component {
         <div className='render-view-container' ref={$ => this.container = $}>
           <canvas
             className='render-view'
-            width={width || 680}
-            height={height || 400}
+            width={width || 1360}
+            height={height || 800}
             ref={$ => this.$ = $}
           />
         </div>

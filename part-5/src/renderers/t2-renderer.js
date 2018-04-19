@@ -1,33 +1,7 @@
-// import THREE from '../lib/three';
-// import Renderer from '../lib/renderer';
-//
-// // Shader imports
-// import vert from '../shaders/task-1/diffuse.vert';
-// import frag from '../shaders/task-2/phong.frag';
-//
-// export default class extends Renderer {
-//   initScene() {
-//     if (!this.checkShader(vert, frag)) {
-//       this.setErrorScene();
-//       return;
-//     }
-//
-//     this.setLight();
-//
-//     const geometry = new THREE.TeapotBufferGeometry(4, 32, 32);
-//     const material = this.createShaderMaterial(vert, frag);
-//     const object = new THREE.Mesh(geometry, material);
-//     this.scene.add(object);
-//   }
-//
-//   update(dt) {
-//     if (!this.focussed) {
-//       this.updateCamera(dt / 12000);
-//     }
-//   }
-// }
-// import THREE from '../lib/three';
+
+
 import Renderer from '../lib/renderer';
+
 import vert from '../shaders/task-3/texture.vert';
 import frag from '../shaders/task-3/texture.frag';
 
@@ -37,6 +11,7 @@ import texture3 from '../textures/dick/3.png';
 import texture2 from '../textures/dick/2.png';
 import texture1 from '../textures/dick/1.png';
 import texture0 from '../textures/dick/0.png';
+
 var THREE = require('three')
 var OrbitControls = require('three-orbit-controls')(THREE)
 
@@ -46,7 +21,6 @@ export default class extends Renderer {
       this.setErrorScene();
       return;
     }
-    this.setLight(true);
 
     // var controls = new OrbitControls(this.camera);
     // controls.addEventListener( 'change', light_update );
@@ -105,10 +79,19 @@ export default class extends Renderer {
       value: tex0//new THREE.TextureLoader().load(texture)
     };
 
-    const geometry = new THREE.TeapotBufferGeometry(4, 32, 32);
-    const material = this.createShaderMaterial(vert, frag);
-    const cube = new THREE.Mesh(geometry, material);
-    this.scene.add(cube);
+    this.setLight(false);
+    const hatchMaterial = this.createShaderMaterial(vert, frag);
+    var loader = new THREE.JSONLoader();
+    loader.load(
+      '../models/stanfurd.json',
+      function ( geometry ) {
+
+        const object = new THREE.Mesh(geometry, hatchMaterial);
+        this.scene.add( object );
+      }
+
+    );
+
     this.scene.background = new THREE.Color( 0xffffff );
   }
 
