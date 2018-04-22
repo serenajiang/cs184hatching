@@ -19,7 +19,7 @@ varying vec3 fNormal;
 void main() {
 
   if (dot(fNormal, normalize(cameraPosition - fPosition)) < 0.0) {
-    gl_FragColor = vec4(0.,0.,0.,1);
+    gl_FragColor = vec4(0.5, 0.5, 0.5, .5);
   }
 
 }
