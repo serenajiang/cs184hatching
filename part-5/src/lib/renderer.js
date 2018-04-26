@@ -27,6 +27,7 @@ class Renderer {
     window.addEventListener('mousedown',   this.onmousedown);
     window.addEventListener('mouseup',     this.onmouseup);
     window.addEventListener('mousemove',   this.onmousemove);
+
   }
 
   detachListeners() {
@@ -44,8 +45,29 @@ class Renderer {
     this.renderer.setViewport(0, 0, this.width, this.height);
   };
 
-  onkeydown = (e) => { };
-  onkeydown = (e) => { };
+  onkeydown = (e) => {
+    if (e.defaultPrevented) {
+        return; // Do nothing if the event was already processed
+      }
+      switch (e.key) {
+        case "0":
+          this.texture_set = 0;
+          this.update_textures(0);
+          break;
+        case "1":
+          this.texture_set = 1;
+          this.update_textures(1);
+          break;
+        case "2":
+          this.texture_set = 2;
+          break;
+        default:
+          return;
+      }
+    // Cancel the default action to avoid it being handled twice
+    e.preventDefault();
+  };
+
   onkeyup = (e) => { };
 
   onmousedown = (e) => {
@@ -103,7 +125,7 @@ class Renderer {
       mouse: {},
       lastMouse: null
     };
-    this.focussed = false;
+    this.focussed = true;
     this.stats.setMode(0);
     this.initScene();
     this.attachListeners();
@@ -258,6 +280,7 @@ class Renderer {
   };
 
   initScene() { }
+  update_textures(i) { }
   update(dt) { }
 }
 
