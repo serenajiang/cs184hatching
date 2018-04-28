@@ -94,11 +94,6 @@ export default class extends Renderer {
       value: tex5//new THREE.TextureLoader().load(texture)
     };
 
-    tex5.mipmaps[0] = tex5;
-    tex5.mipmaps[1] = new THREE.TextureLoader().load(texture52);
-    tex5.mipmaps[2] = new THREE.TextureLoader().load(texture51);
-    tex5.mipmaps[3] = new THREE.TextureLoader().load(texture50);
-
     
     tex4.wrapS = THREE.RepeatWrapping;
     tex4.wrapT = THREE.RepeatWrapping;
@@ -107,11 +102,6 @@ export default class extends Renderer {
       type: "t",
       value: tex4//new THREE.TextureLoader().load(texture)
     };
-
-    tex4.mipmaps[0] = tex4;
-    tex4.mipmaps[1] = new THREE.TextureLoader().load(texture42);
-    tex4.mipmaps[2] = new THREE.TextureLoader().load(texture41);
-    tex4.mipmaps[3] = new THREE.TextureLoader().load(texture40);
 
  
     tex3.wrapS = THREE.RepeatWrapping;
@@ -122,11 +112,6 @@ export default class extends Renderer {
       value: tex3//new THREE.TextureLoader().load(texture)
     };
 
-    tex3.mipmaps[0] = tex0;
-    tex3.mipmaps[1] = new THREE.TextureLoader().load(texture02);
-    tex3.mipmaps[2] = new THREE.TextureLoader().load(texture01);
-    tex3.mipmaps[3] = new THREE.TextureLoader().load(texture00);
-
     
     tex2.wrapS = THREE.RepeatWrapping;
     tex2.wrapT = THREE.RepeatWrapping;
@@ -135,11 +120,6 @@ export default class extends Renderer {
       type: "t",
       value: tex2//new THREE.TextureLoader().load(texture)
     };
-
-    tex2.mipmaps[0] = tex2;
-    tex2.mipmaps[1] = new THREE.TextureLoader().load(texture22).image;
-    tex2.mipmaps[2] = new THREE.TextureLoader().load(texture21).image;
-    tex2.mipmaps[3] = new THREE.TextureLoader().load(texture20);
 
     
     tex1.wrapS = THREE.RepeatWrapping;
@@ -150,11 +130,6 @@ export default class extends Renderer {
       value: tex1//new THREE.TextureLoader().load(texture)
     };
 
-    tex1.mipmaps[0] = tex1;
-    tex1.mipmaps[1] = new THREE.TextureLoader().load(texture12).image;
-    tex1.mipmaps[2] = new THREE.TextureLoader().load(texture11);
-    tex1.mipmaps[3] = new THREE.TextureLoader().load(texture10);
-
     
     tex0.wrapS = THREE.RepeatWrapping;
     tex0.wrapT = THREE.RepeatWrapping;
@@ -163,11 +138,6 @@ export default class extends Renderer {
       type: "t",
       value: tex0//new THREE.TextureLoader().load(texture)
     };
-    
-    tex0.mipmaps[0] = tex1;
-    tex0.mipmaps[1] = new THREE.TextureLoader().load(texture12).image;
-    tex0.mipmaps[2] = new THREE.TextureLoader().load(texture11);
-    tex0.mipmaps[3] = new THREE.TextureLoader().load(texture10);
 
     // Outline
 
