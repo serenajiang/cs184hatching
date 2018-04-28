@@ -48,7 +48,8 @@ export default class extends Renderer {
       this.setErrorScene();
       return;
     }
-    this.setLight(true);
+    this.scene.children = []; // remove all geometry
+    this.setLight(this.light_setting);
 
 
     var tex5 = new THREE.TextureLoader().load(texture53);
@@ -139,12 +140,31 @@ export default class extends Renderer {
     };
 
     // Outline
-    const outlineGeometry = new THREE.TeapotBufferGeometry(4, 32, 32);
+
+    if (this.geometry == 0) {
+      var outlineGeometry = new THREE.TeapotBufferGeometry(4, 32, 32);
+      var geometry = new THREE.TeapotBufferGeometry(4, 32, 32);
+    }
+    else if (this.geometry == 1) {
+      var outlineGeometry = new THREE.SphereBufferGeometry(5, 32, 32);
+      var geometry = new THREE.SphereBufferGeometry(5, 32, 32);
+    }
+
+    else if (this.geometry == 2) {
+      var outlineGeometry = new THREE.TorusBufferGeometry(5, 2, 16, 100);
+      var geometry = new THREE.TorusBufferGeometry(5, 2, 16, 100);
+    }
+    else if (this.geometry == 3) {
+      var outlineGeometry = new THREE.CylinderBufferGeometry(5, 5, 2.5, 64, 100);
+      var geometry = new THREE.CylinderBufferGeometry(5, 5, 2.5, 64, 100);
+    }
+
+    //const outlineGeometry = new THREE.TeapotBufferGeometry(4, 32, 32);
     const outlineMaterial = this.createShaderMaterial(vertOutline, fragOutline);
     const outline = new THREE.Mesh(outlineGeometry, outlineMaterial);
     this.scene.add(outline);
 
-    const geometry = new THREE.TeapotBufferGeometry(4, 32, 32);
+    // const geometry = new THREE.TeapotBufferGeometry(4, 32, 32);
     // const geometry = new THREE.SphereBufferGeometry(5, 32, 32);
     const material = this.createShaderMaterial(vert, frag);
     const cube = new THREE.Mesh(geometry, material);

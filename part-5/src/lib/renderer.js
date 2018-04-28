@@ -1,7 +1,9 @@
 // import THREE from '../lib/three';
+import dat from 'dat.gui';
 var THREE = require('three')
 var OrbitControls = require('three-orbit-controls')(THREE)
 class Renderer {
+
   destroy() {
     this.detachListeners();
     this.view = null;
@@ -105,7 +107,10 @@ class Renderer {
     };
     this.focussed = false;
     this.stats.setMode(0);
+    this.light_setting = 0;
+    this.geometry = 0;
     this.initScene();
+    this.initGUI();
     this.attachListeners();
   }
 
@@ -120,7 +125,7 @@ class Renderer {
   setLight(fixed=false,x=25, y=15, z=25, r=1, g=1, b=1) {
 
     // FOR LIGHT INDEPENDENT OF CAMERA
-    if (!fixed) {
+    if (!this.light_setting) {
       const lGeometry = new THREE.BoxGeometry(1, 1, 1);
       const lMaterial = new THREE.MeshBasicMaterial({ color: new THREE.Color(r, g, b) });
       const light = new THREE.Mesh(lGeometry, lMaterial);
@@ -157,6 +162,20 @@ class Renderer {
         value: new THREE.Vector3(r * 100, g * 100, b * 100)
       }
     }
+  }
+
+  initGUI() {
+    var gui = new dat.GUI();
+
+    gui.add(this, "light_setting", { 'Static': 0, 'Camera': 1 });
+    gui.add(this, "geometry", {'Teapot': 0, 'Sphere': 1, "Torus" : 2, "Cylinder": 3});
+    gui.add(this, "update_settings");
+
+  }
+
+  update_settings() {
+    this.setLight();
+    this.initScene();
   }
 
 
