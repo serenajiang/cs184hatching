@@ -155,8 +155,8 @@ export default class extends Renderer {
       var geometry = new THREE.TorusBufferGeometry(5, 2, 16, 100);
     }
     else if (this.geometry == 3) {
-      var outlineGeometry = new THREE.CylinderBufferGeometry(5, 5, 2.5, 64, 100);
-      var geometry = new THREE.CylinderBufferGeometry(5, 5, 2.5, 64, 100);
+      var outlineGeometry = new THREE.CylinderBufferGeometry(3, 3, 8, 64, 100);
+      var geometry = new THREE.CylinderBufferGeometry(3, 3, 8, 64, 100);
     }
 
     //const outlineGeometry = new THREE.TeapotBufferGeometry(4, 32, 32);
