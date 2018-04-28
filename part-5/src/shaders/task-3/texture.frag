@@ -35,19 +35,19 @@ void main() {
     float rat = (brightness - .3)/0.1;
     gl_FragColor = (1.-rat)*texture2D(texture53, fUv) + rat*texture2D(texture43, fUv);
   }
-  else if (brightness <= 0.5){
+  else if (brightness <= 0.5) {
     float rat = (brightness - 0.4)/0.1;
     gl_FragColor = (1.-rat)*texture2D(texture43, fUv) + (rat)*texture2D(texture33, fUv);
   }
-  else if (brightness <= 0.6){
+  else if (brightness <= 0.6) {
     float rat = (brightness - 0.5)/0.1;
     gl_FragColor = (1.-rat)*texture2D(texture33, fUv) + (rat)*texture2D(texture23, fUv);
   }
-  else if (brightness <= 0.7){
+  else if (brightness <= 0.7) {
     float rat = (brightness - 0.6)/0.1;
     gl_FragColor = (1.-rat)*texture2D(texture23, fUv) + (rat)*texture2D(texture13, fUv);
   }
-  else if (brightness <= 0.8){
+  else if (brightness <= 0.8) {
     float rat = (brightness - 0.7)/0.1;
     gl_FragColor = (1.-rat)*texture2D(texture13, fUv) + (rat)*texture2D(texture03, fUv);
   }
