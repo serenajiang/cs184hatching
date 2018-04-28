@@ -48,7 +48,7 @@ export default class extends Renderer {
       this.setErrorScene();
       return;
     }
-    this.setLight(false);
+    this.setLight(true);
 
 
     var tex5 = new THREE.TextureLoader().load(texture53);
@@ -137,6 +137,8 @@ export default class extends Renderer {
       type: "t",
       value: tex0//new THREE.TextureLoader().load(texture)
     };
+
+    // Outline
     const outlineGeometry = new THREE.TeapotBufferGeometry(4, 32, 32);
     const outlineMaterial = this.createShaderMaterial(vertOutline, fragOutline);
     const outline = new THREE.Mesh(outlineGeometry, outlineMaterial);
