@@ -1,43 +1,58 @@
 // import THREE from '../lib/three';
 import Renderer from '../lib/renderer';
 import vert from '../shaders/task-3/texture.vert';
-import frag from '../shaders/task-3/texture.frag';
+import frag from '../shaders/task-3/mipmaptest.frag';
 import vertOutline from '../shaders/task-3/textureOutline.vert';
 import fragOutline from '../shaders/task-3/textureOutline.frag';
-// import texture5 from '../textures/dick/5.png';
-// import texture4 from '../textures/dick/4.png';
-// import texture3 from '../textures/dick/3.png';
-// import texture2 from '../textures/dick/2.png';
-// import texture1 from '../textures/dick/1.png';
-// import texture0 from '../textures/dick/0.png';
 
-import texture53 from '../textures/test/ayy53.bmp';
-import texture43 from '../textures/test/ayy43.bmp';
-import texture33 from '../textures/test/ayy33.bmp';
-import texture23 from '../textures/test/ayy23.bmp';
-import texture13 from '../textures/test/ayy13.bmp';
-import texture03 from '../textures/test/ayy03.bmp';
-
-import texture52 from '../textures/test/ayy52.bmp';
-import texture42 from '../textures/test/ayy42.bmp';
-import texture32 from '../textures/test/ayy32.bmp';
-import texture22 from '../textures/test/ayy22.bmp';
-import texture12 from '../textures/test/ayy12.bmp';
-import texture02 from '../textures/test/ayy02.bmp';
-
-import texture51 from '../textures/test/ayy51.bmp';
-import texture41 from '../textures/test/ayy41.bmp';
-import texture31 from '../textures/test/ayy31.bmp';
-import texture21 from '../textures/test/ayy21.bmp';
-import texture11 from '../textures/test/ayy11.bmp';
-import texture01 from '../textures/test/ayy01.bmp';
-
-import texture50 from '../textures/test/ayy50.bmp';
-import texture40 from '../textures/test/ayy40.bmp';
-import texture30 from '../textures/test/ayy30.bmp';
-import texture20 from '../textures/test/ayy20.bmp';
-import texture10 from '../textures/test/ayy10.bmp';
-import texture00 from '../textures/test/ayy00.bmp';
+import texture00 from "../textures/lines/0.png";
+import texture01 from "../textures/lines/0.png";
+import texture02 from "../textures/lines/0.png";
+import texture03 from "../textures/lines/0.png";
+import texture04 from "../textures/lines/0.png";
+import texture05 from "../textures/lines/0.png";
+import texture06 from "../textures/lines/0.png";
+import texture07 from "../textures/lines/0.png";
+import texture10 from "../textures/lines/10.png";
+import texture11 from "../textures/lines/11.png";
+import texture12 from "../textures/lines/12.png";
+import texture13 from "../textures/lines/13.png";
+import texture14 from "../textures/lines/14.png";
+import texture15 from "../textures/lines/15.png";
+import texture16 from "../textures/lines/16.png";
+import texture17 from "../textures/lines/17.png";
+import texture20 from "../textures/lines/20.png";
+import texture21 from "../textures/lines/21.png";
+import texture22 from "../textures/lines/22.png";
+import texture23 from "../textures/lines/23.png";
+import texture24 from "../textures/lines/24.png";
+import texture25 from "../textures/lines/25.png";
+import texture26 from "../textures/lines/26.png";
+import texture27 from "../textures/lines/27.png";
+import texture30 from "../textures/lines/30.png";
+import texture31 from "../textures/lines/31.png";
+import texture32 from "../textures/lines/32.png";
+import texture33 from "../textures/lines/33.png";
+import texture34 from "../textures/lines/34.png";
+import texture35 from "../textures/lines/35.png";
+import texture36 from "../textures/lines/36.png";
+import texture37 from "../textures/lines/37.png";
+import texture40 from "../textures/lines/40.png";
+import texture41 from "../textures/lines/41.png";
+import texture42 from "../textures/lines/42.png";
+import texture43 from "../textures/lines/43.png";
+import texture44 from "../textures/lines/44.png";
+import texture45 from "../textures/lines/45.png";
+import texture46 from "../textures/lines/46.png";
+import texture47 from "../textures/lines/47.png";
+import texture50 from "../textures/lines/50.png";
+import texture51 from "../textures/lines/51.png";
+import texture52 from "../textures/lines/52.png";
+import texture53 from "../textures/lines/53.png";
+import texture54 from "../textures/lines/54.png";
+import texture55 from "../textures/lines/55.png";
+import texture56 from "../textures/lines/56.png";
+import texture57 from "../textures/lines/57.png";
 
 var THREE = require('three')
 var OrbitControls = require('three-orbit-controls')(THREE)
@@ -51,94 +66,56 @@ export default class extends Renderer {
     this.scene.children = []; // remove all geometry
     this.setLight(this.light_setting);
 
-    var texture_set = 3;
+    var tex40 = new THREE.TextureLoader().load(texture40);
+    var tex41 = new THREE.TextureLoader().load(texture41);
+    var tex42 = new THREE.TextureLoader().load(texture42);
+    var tex43 = new THREE.TextureLoader().load(texture43);
+    var tex44 = new THREE.TextureLoader().load(texture44);
+    var tex45 = new THREE.TextureLoader().load(texture45);
+    var tex46 = new THREE.TextureLoader().load(texture46);
+    var tex47 = new THREE.TextureLoader().load(texture47);
 
-    var tex5 = new THREE.TextureLoader().load(texture50);
-    var tex4 = new THREE.TextureLoader().load(texture40);
-    var tex3 = new THREE.TextureLoader().load(texture30);
-    var tex2 = new THREE.TextureLoader().load(texture20);
-    var tex1 = new THREE.TextureLoader().load(texture10);
-    var tex0 = new THREE.TextureLoader().load(texture00);
+    tex40.minFilter = THREE.NearestFilter;
+    tex41.minFilter = THREE.NearestFilter;
+    tex42.minFilter = THREE.NearestFilter;
+    tex43.minFilter = THREE.NearestFilter;
+    tex44.minFilter = THREE.NearestFilter;
+    tex45.minFilter = THREE.NearestFilter;
+    tex46.minFilter = THREE.NearestFilter;
+    tex47.minFilter = THREE.NearestFilter;
 
-    if (texture_set != 0) {
-        if (texture_set == 1) {
-            tex5 = new THREE.TextureLoader().load(texture51);
-            tex4 = new THREE.TextureLoader().load(texture41);
-            tex3 = new THREE.TextureLoader().load(texture31);
-            tex2 = new THREE.TextureLoader().load(texture21);
-            tex1 = new THREE.TextureLoader().load(texture11);
-            tex0 = new THREE.TextureLoader().load(texture01);
-        } else if (texture_set == 2) {
-            tex5 = new THREE.TextureLoader().load(texture52);
-            tex4 = new THREE.TextureLoader().load(texture42);
-            tex3 = new THREE.TextureLoader().load(texture32);
-            tex2 = new THREE.TextureLoader().load(texture22);
-            tex1 = new THREE.TextureLoader().load(texture12);
-            tex0 = new THREE.TextureLoader().load(texture02);
-        } else if (texture_set == 3) {
-            tex5 = new THREE.TextureLoader().load(texture53);
-            tex4 = new THREE.TextureLoader().load(texture43);
-            tex3 = new THREE.TextureLoader().load(texture33);
-            tex2 = new THREE.TextureLoader().load(texture23);
-            tex1 = new THREE.TextureLoader().load(texture13);
-            tex0 = new THREE.TextureLoader().load(texture03);
-        }
-    }
-
-    
-    tex5.wrapS = THREE.RepeatWrapping;
-    tex5.wrapT = THREE.RepeatWrapping;
-    tex5.repeat.set(10,10);
-    this.uniforms['texture53'] = {
+    this.uniforms['texture40'] = {
       type: "t",
-      value: tex5//new THREE.TextureLoader().load(texture)
+      value: tex40
     };
-
-    
-    tex4.wrapS = THREE.RepeatWrapping;
-    tex4.wrapT = THREE.RepeatWrapping;
-    tex4.repeat.set(10,10);
+    this.uniforms['texture41'] = {
+      type: "t",
+      value: tex41
+    };
+    this.uniforms['texture42'] = {
+      type: "t",
+      value: tex42
+    };
     this.uniforms['texture43'] = {
       type: "t",
-      value: tex4//new THREE.TextureLoader().load(texture)
+      value: tex43
     };
-
- 
-    tex3.wrapS = THREE.RepeatWrapping;
-    tex3.wrapT = THREE.RepeatWrapping;
-    tex3.repeat.set(10,10);
-    this.uniforms['texture33'] = {
+    this.uniforms['texture44'] = {
       type: "t",
-      value: tex3//new THREE.TextureLoader().load(texture)
+      value: tex44
     };
-
-    
-    tex2.wrapS = THREE.RepeatWrapping;
-    tex2.wrapT = THREE.RepeatWrapping;
-    tex2.repeat.set(10,10);
-    this.uniforms['texture23'] = {
+    this.uniforms['texture45'] = {
       type: "t",
-      value: tex2//new THREE.TextureLoader().load(texture)
+      value: tex45
     };
-
-    
-    tex1.wrapS = THREE.RepeatWrapping;
-    tex1.wrapT = THREE.RepeatWrapping;
-    tex1.repeat.set(10,10);
-    this.uniforms['texture13'] = {
+    this.uniforms['texture46'] = {
       type: "t",
-      value: tex1//new THREE.TextureLoader().load(texture)
+      value: tex46
     };
-
-    
-    tex0.wrapS = THREE.RepeatWrapping;
-    tex0.wrapT = THREE.RepeatWrapping;
-    tex0.repeat.set(10,10);
-    this.uniforms['texture03'] = {
+    this.uniforms['texture47'] = {
       type: "t",
-      value: tex0//new THREE.TextureLoader().load(texture)
+      value: tex47
     };
-
     // Outline
 
     if (this.geometry == 0) {
@@ -163,7 +140,7 @@ export default class extends Renderer {
     const outlineMaterial = this.createShaderMaterial(vertOutline, fragOutline);
     const outline = new THREE.Mesh(outlineGeometry, outlineMaterial);
     this.scene.add(outline);
-    
+
     const material = this.createShaderMaterial(vert, frag);
     const cube = new THREE.Mesh(geometry, material);
     this.scene.add(cube);
@@ -207,7 +184,7 @@ export default class extends Renderer {
 */
 
   update(dt) {
-    this.update_textures(this.texture_set);
+    //this.update_textures(this.texture_set);
     if (!this.focussed) {
       this.updateCamera(dt / 12000);
     }
