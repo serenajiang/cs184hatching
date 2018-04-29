@@ -41,10 +41,7 @@ void main() {
 
   float incr = 1.0 / numLevels;
 
-  if (dot(fNormal, normalize(cameraPosition - fPosition)) < 0.0) {
-    gl_FragColor = vec4(.5, .5, .5 ,1);
-  }
-  else if (percent_bright <= incr) {
+  if (percent_bright <= incr) {
     float rat = (percent_bright - incr)/0.1;
     gl_FragColor = (1.-rat)*texture2D(texture53, fUv) + rat*texture2D(texture43, fUv);
   }

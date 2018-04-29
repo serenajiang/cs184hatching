@@ -46,6 +46,16 @@ import texture26 from '../textures/drawn/lvl2.png';
 import texture16 from '../textures/drawn/lvl1.png';
 import texture06 from '../textures/drawn/lvl0.png';
 
+import level1 from '../textures/thngies/mipmaps/tone_4_level_1.png';
+import level2 from '../textures/thngies/mipmaps/tone_4_level_2.png';
+import level3 from '../textures/thngies/mipmaps/tone_4_level_3.png';
+import level4 from '../textures/thngies/mipmaps/tone_4_level_4.png';
+import level5 from '../textures/thngies/mipmaps/tone_4_level_5.png';
+import level6 from '../textures/thngies/mipmaps/tone_4_level_6.png';
+import level7 from '../textures/thngies/mipmaps/tone_4_level_7.png';
+import level8 from '../textures/thngies/mipmaps/tone_4_level_8.png';
+import level9 from '../textures/thngies/mipmaps/tone_4_level_9.png';
+
 var THREE = require('three')
 var OrbitControls = require('three-orbit-controls')(THREE)
 
@@ -60,7 +70,7 @@ export default class extends Renderer {
 
     var texture_set = 4;
     //set num_levels between 1 and 6 for how many tones you want
-    var num_levels = 3.0;
+    var num_levels = 1.0;
     this.uniforms['numLevels'] = { value: num_levels };
 
     var tex5 = new THREE.TextureLoader().load(texture50);
@@ -110,15 +120,77 @@ export default class extends Renderer {
       type: "t",
       value: tex5//new THREE.TextureLoader().load(texture)
     };
-
     
     tex4.wrapS = THREE.RepeatWrapping;
     tex4.wrapT = THREE.RepeatWrapping;
     tex4.repeat.set(10,10);
+
+    /*
+    tex4.mipmaps[0] = level1;
+    tex4.mipmaps[1] = level2;
+    tex4.mipmaps[2] = level3;
+    tex4.mipmaps[3] = level4;
+    tex4.mipmaps[4] = level5;
+    tex4.mipmaps[5] = level6;
+    tex4.mipmaps[6] = level7;
+    tex4.mipmaps[7] = level8;
+    tex4.mipmaps[8] = level9;
+    
+
+                function mipmap( size, level) {
+                    var imageCanvas = document.createElement( "canvas" ),
+                        context = imageCanvas.getContext( "2d" );
+                    if (level == 0) {
+                        var pat = context.createPattern(texture40, "repeat");
+                    } else if (level == 1) {
+                        var pat = context.createPattern(level1, "repeat");
+                    } else if (level == 2) {
+                        var pat = context.createPattern(level2, "repeat");
+                    } else if (level == 3) {
+                        var pat = context.createPattern(level3, "repeat");
+                    } else if (level == 4) {
+                        var pat = context.createPattern(level4, "repeat");
+                    } else if (level == 5) {
+                        var pat = context.createPattern(level5, "repeat");
+                    } else if (level == 6) {
+                        var pat = context.createPattern(level6, "repeat");
+                    } else if (level == 7) {
+                        var pat = context.createPattern(level7, "repeat");
+                    } else if (level == 8) {
+                        var pat = context.createPattern(level8, "repeat");
+                    } else if (level == 9) {
+                        var pat = context.createPattern(level9, "repeat");
+                    }
+                    
+                    imageCanvas.width = imageCanvas.height = size;
+
+                    context.fillStyle = pat;
+                    context.fillRect( 0, 0, size, size );
+                    context.fill();
+                    return imageCanvas;
+                }
+                var canvas = mipmap( 512, 0);
+                tex4 = new THREE.CanvasTexture( canvas );
+                tex4.mipmaps[ 0 ] = canvas;
+                tex4.mipmaps[ 1 ] = mipmap( 256, 1);
+                tex4.mipmaps[ 2 ] = mipmap( 128, 2);
+                tex4.mipmaps[ 3 ] = mipmap( 64, 3);
+                tex4.mipmaps[ 4 ] = mipmap( 32, 4);
+                tex4.mipmaps[ 5 ] = mipmap( 16, 5);
+                tex4.mipmaps[ 6 ] = mipmap( 8, 6);
+                tex4.mipmaps[ 7 ] = mipmap( 4, 7);
+                tex4.mipmaps[ 8 ] = mipmap( 2, 8);
+                tex4.mipmaps[ 9 ] = mipmap( 1, 9);
+                tex4.repeat.set( 1000, 1000 );
+                tex4.wrapS = THREE.RepeatWrapping;
+                tex4.wrapT = THREE.RepeatWrapping;
+    */
+
     this.uniforms['texture43'] = {
       type: "t",
       value: tex4//new THREE.TextureLoader().load(texture)
     };
+    
 
  
     tex3.wrapS = THREE.RepeatWrapping;
