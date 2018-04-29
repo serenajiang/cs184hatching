@@ -39,6 +39,13 @@ import texture20 from '../textures/test/ayy20.bmp';
 import texture10 from '../textures/test/ayy10.bmp';
 import texture00 from '../textures/test/ayy00.bmp';
 
+import texture56 from '../textures/drawn/lvl5.png';
+import texture46 from '../textures/drawn/lvl4.png';
+import texture36 from '../textures/drawn/lvl3.png';
+import texture26 from '../textures/drawn/lvl2.png';
+import texture16 from '../textures/drawn/lvl1.png';
+import texture06 from '../textures/drawn/lvl0.png';
+
 var THREE = require('three')
 var OrbitControls = require('three-orbit-controls')(THREE)
 
@@ -51,7 +58,10 @@ export default class extends Renderer {
     this.scene.children = []; // remove all geometry
     this.setLight(this.light_setting);
 
-    var texture_set = 3;
+    var texture_set = 4;
+    //set num_levels between 1 and 6 for how many tones you want
+    var num_levels = 3.0;
+    this.uniforms['numLevels'] = { value: num_levels };
 
     var tex5 = new THREE.TextureLoader().load(texture50);
     var tex4 = new THREE.TextureLoader().load(texture40);
@@ -82,6 +92,13 @@ export default class extends Renderer {
             tex2 = new THREE.TextureLoader().load(texture23);
             tex1 = new THREE.TextureLoader().load(texture13);
             tex0 = new THREE.TextureLoader().load(texture03);
+        } else if (texture_set == 4) {
+            tex5 = new THREE.TextureLoader().load(texture56);
+            tex4 = new THREE.TextureLoader().load(texture46);
+            tex3 = new THREE.TextureLoader().load(texture36);
+            tex2 = new THREE.TextureLoader().load(texture26);
+            tex1 = new THREE.TextureLoader().load(texture16);
+            tex0 = new THREE.TextureLoader().load(texture06);
         }
     }
 
