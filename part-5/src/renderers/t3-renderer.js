@@ -39,6 +39,7 @@ import texture20 from '../textures/test/ayy20.bmp';
 import texture10 from '../textures/test/ayy10.bmp';
 import texture00 from '../textures/test/ayy00.bmp';
 
+<<<<<<< HEAD
 import texture56 from '../textures/drawn/lvl5.png';
 import texture46 from '../textures/drawn/lvl4.png';
 import texture36 from '../textures/drawn/lvl3.png';
@@ -56,6 +57,8 @@ import level7 from '../textures/thngies/mipmaps/tone_4_level_7.png';
 import level8 from '../textures/thngies/mipmaps/tone_4_level_8.png';
 import level9 from '../textures/thngies/mipmaps/tone_4_level_9.png';
 
+=======
+>>>>>>> 00ddbc88df3014dd2925ce98286786501358f2c9
 var THREE = require('three')
 
 export default class extends Renderer {
@@ -115,7 +118,12 @@ export default class extends Renderer {
       type: "t",
       value: tex5
     };
-
+    var tex4 = new THREE.TextureLoader().load(texture43);
+    // var tex4 = new THREE.Texture(texture43);
+    // tex4.mipmaps[0] = tex4;
+    // tex4.mipmaps[1] = new THREE.TextureLoader().load(texture42);
+    // tex4.mipmaps[2] = new THREE.TextureLoader().load(texture41);
+    // tex4.mipmaps[3] = new THREE.TextureLoader().load(texture40);
 
     tex4.wrapS = THREE.RepeatWrapping;
     tex4.wrapT = THREE.RepeatWrapping;
@@ -126,6 +134,12 @@ export default class extends Renderer {
     };
     
 
+    var tex3 = new THREE.TextureLoader().load(texture33);
+    // var tex3 = new THREE.Texture(texture33);
+    // tex3.mipmaps[0] = tex3;
+    // tex3.mipmaps[1] = new THREE.TextureLoader().load(texture32);
+    // tex3.mipmaps[2] = new THREE.TextureLoader().load(texture31);
+    // tex3.mipmaps[3] = new THREE.TextureLoader().load(texture30);
 
     tex3.wrapS = THREE.RepeatWrapping;
     tex3.wrapT = THREE.RepeatWrapping;
@@ -135,7 +149,12 @@ export default class extends Renderer {
       value: tex3
     };
 
-
+    var tex2 = new THREE.TextureLoader().load(texture23);
+    // var tex2 = new THREE.Texture(texture23);
+    // tex2.mipmaps[0] = tex2;
+    // tex2.mipmaps[1] = new THREE.TextureLoader().load(texture22).image;
+    // tex2.mipmaps[2] = new THREE.TextureLoader().load(texture21).image;
+    // tex2.mipmaps[3] = new THREE.TextureLoader().load(texture20);
     tex2.wrapS = THREE.RepeatWrapping;
     tex2.wrapT = THREE.RepeatWrapping;
 
@@ -144,6 +163,12 @@ export default class extends Renderer {
       value: tex2
     };
 
+    var tex1 = new THREE.TextureLoader().load(texture13);
+    // var tex1 = new THREE.Texture(texture13);
+    // tex1.mipmaps[0] = tex1;
+    // tex1.mipmaps[1] = new THREE.TextureLoader().load(texture12).image;
+    // tex1.mipmaps[2] = new THREE.TextureLoader().load(texture11);
+    // tex1.mipmaps[3] = new THREE.TextureLoader().load(texture10);
 
     tex1.wrapS = THREE.RepeatWrapping;
     tex1.wrapT = THREE.RepeatWrapping;
@@ -152,7 +177,12 @@ export default class extends Renderer {
       type: "t",
       value: tex1
     };
-
+    var tex0 = new THREE.TextureLoader().load(texture03);
+    // var tex0 = new THREE.Texture(texture03);
+    // tex3.mipmaps[0] = tex0;
+    // tex3.mipmaps[1] = new THREE.TextureLoader().load(texture02);
+    // tex3.mipmaps[2] = new THREE.TextureLoader().load(texture01);
+    // tex3.mipmaps[3] = new THREE.TextureLoader().load(texture00);
 
     tex0.wrapS = THREE.RepeatWrapping;
     tex0.wrapT = THREE.RepeatWrapping;
@@ -206,6 +236,7 @@ export default class extends Renderer {
     this.scene.background = new THREE.Color( 0xffffff );
     }
 
+  }
 
   update(dt) {
     return;

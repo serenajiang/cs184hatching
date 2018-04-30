@@ -1,3 +1,0 @@
-/home/jacob/cs184/cs184hatching/synthesis/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/jacob/cs184/cs184hatching/synthesis/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/jacob/cs184/cs184hatching/synthesis/cmake-build-debug/CMakeFiles/synthesis.dir
