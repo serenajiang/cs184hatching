@@ -57,18 +57,10 @@ import level8 from '../textures/thngies/mipmaps/tone_4_level_8.png';
 import level9 from '../textures/thngies/mipmaps/tone_4_level_9.png';
 
 var THREE = require('three')
-var OrbitControls = require('three-orbit-controls')(THREE)
 
 export default class extends Renderer {
-  initScene() {
-    if (!this.checkShader(vert, frag)) {
-      this.setErrorScene();
-      return;
-    }
-    this.scene.children = []; // remove all geometry
-    this.setLight(this.light_setting);
 
-    var texture_set = 4;
+    var texture_set = 1;
     //set num_levels between 1 and 6 for how many tones you want
     var num_levels = 6.0;
     this.uniforms['numLevels'] = { value: num_levels };
@@ -112,193 +104,106 @@ export default class extends Renderer {
         }
     }
 
-    
+  importTextures() {
+    var tex5 = new THREE.TextureLoader().load(texture53);
+
     tex5.wrapS = THREE.RepeatWrapping;
     tex5.wrapT = THREE.RepeatWrapping;
-    tex5.repeat.set(10,10);
+
     this.uniforms['texture53'] = {
       type: "t",
-      value: tex5//new THREE.TextureLoader().load(texture)
+      value: tex5
     };
-    
+
+
     tex4.wrapS = THREE.RepeatWrapping;
     tex4.wrapT = THREE.RepeatWrapping;
-    tex4.repeat.set(10,10);
-
-    /*
-    tex4.mipmaps[0] = level1;
-    tex4.mipmaps[1] = level2;
-    tex4.mipmaps[2] = level3;
-    tex4.mipmaps[3] = level4;
-    tex4.mipmaps[4] = level5;
-    tex4.mipmaps[5] = level6;
-    tex4.mipmaps[6] = level7;
-    tex4.mipmaps[7] = level8;
-    tex4.mipmaps[8] = level9;
-    
-
-                function mipmap( size, level) {
-                    var imageCanvas = document.createElement( "canvas" ),
-                        context = imageCanvas.getContext( "2d" );
-                    if (level == 0) {
-                        var pat = context.createPattern(texture40, "repeat");
-                    } else if (level == 1) {
-                        var pat = context.createPattern(level1, "repeat");
-                    } else if (level == 2) {
-                        var pat = context.createPattern(level2, "repeat");
-                    } else if (level == 3) {
-                        var pat = context.createPattern(level3, "repeat");
-                    } else if (level == 4) {
-                        var pat = context.createPattern(level4, "repeat");
-                    } else if (level == 5) {
-                        var pat = context.createPattern(level5, "repeat");
-                    } else if (level == 6) {
-                        var pat = context.createPattern(level6, "repeat");
-                    } else if (level == 7) {
-                        var pat = context.createPattern(level7, "repeat");
-                    } else if (level == 8) {
-                        var pat = context.createPattern(level8, "repeat");
-                    } else if (level == 9) {
-                        var pat = context.createPattern(level9, "repeat");
-                    }
-                    
-                    imageCanvas.width = imageCanvas.height = size;
-
-                    context.fillStyle = pat;
-                    context.fillRect( 0, 0, size, size );
-                    context.fill();
-                    return imageCanvas;
-                }
-                var canvas = mipmap( 512, 0);
-                tex4 = new THREE.CanvasTexture( canvas );
-                tex4.mipmaps[ 0 ] = canvas;
-                tex4.mipmaps[ 1 ] = mipmap( 256, 1);
-                tex4.mipmaps[ 2 ] = mipmap( 128, 2);
-                tex4.mipmaps[ 3 ] = mipmap( 64, 3);
-                tex4.mipmaps[ 4 ] = mipmap( 32, 4);
-                tex4.mipmaps[ 5 ] = mipmap( 16, 5);
-                tex4.mipmaps[ 6 ] = mipmap( 8, 6);
-                tex4.mipmaps[ 7 ] = mipmap( 4, 7);
-                tex4.mipmaps[ 8 ] = mipmap( 2, 8);
-                tex4.mipmaps[ 9 ] = mipmap( 1, 9);
-                tex4.repeat.set( 1000, 1000 );
-                tex4.wrapS = THREE.RepeatWrapping;
-                tex4.wrapT = THREE.RepeatWrapping;
-    */
 
     this.uniforms['texture43'] = {
       type: "t",
-      value: tex4//new THREE.TextureLoader().load(texture)
+      value: tex4
     };
     
 
- 
+
     tex3.wrapS = THREE.RepeatWrapping;
     tex3.wrapT = THREE.RepeatWrapping;
-    tex3.repeat.set(10,10);
+
     this.uniforms['texture33'] = {
       type: "t",
-      value: tex3//new THREE.TextureLoader().load(texture)
+      value: tex3
     };
 
-    
+
     tex2.wrapS = THREE.RepeatWrapping;
     tex2.wrapT = THREE.RepeatWrapping;
-    tex2.repeat.set(10,10);
+
     this.uniforms['texture23'] = {
       type: "t",
-      value: tex2//new THREE.TextureLoader().load(texture)
+      value: tex2
     };
 
-    
+
     tex1.wrapS = THREE.RepeatWrapping;
     tex1.wrapT = THREE.RepeatWrapping;
-    tex1.repeat.set(10,10);
+    // tex1.repeat.set(10,10);
     this.uniforms['texture13'] = {
       type: "t",
-      value: tex1//new THREE.TextureLoader().load(texture)
+      value: tex1
     };
 
-    
+
     tex0.wrapS = THREE.RepeatWrapping;
     tex0.wrapT = THREE.RepeatWrapping;
-    tex0.repeat.set(10,10);
     this.uniforms['texture03'] = {
       type: "t",
-      value: tex0//new THREE.TextureLoader().load(texture)
+      value: tex0
     };
 
-    // Outline
+  }
+  initScene() {
+    if (!this.checkShader(vert, frag)) {
+      this.setErrorScene();
+      return;
+    }
+    this.scene.children = []; // remove all geometry
+    this.setLight(this.light_setting);
 
     if (this.geometry == 0) {
       var outlineGeometry = new THREE.TeapotBufferGeometry(4, 32, 32);
       var geometry = new THREE.TeapotBufferGeometry(4, 32, 32);
+      this.uniforms['repeat'] = {type: "vec2", value: new THREE.Vector2(2,2)};
     }
     else if (this.geometry == 1) {
-      var outlineGeometry = new THREE.SphereBufferGeometry(5, 32, 32);
+      var outlineGeometry = new THREE.SphereBufferGeometry(5, 64, 64);
       var geometry = new THREE.SphereBufferGeometry(5, 32, 32);
+      this.uniforms['repeat'] = {type: "vec2", value: new THREE.Vector2(10,10)};
     }
 
     else if (this.geometry == 2) {
-      var outlineGeometry = new THREE.TorusBufferGeometry(5, 2, 16, 100);
-      var geometry = new THREE.TorusBufferGeometry(5, 2, 16, 100);
+      var outlineGeometry = new THREE.TorusBufferGeometry(5, 2, 50, 100);
+      var geometry = new THREE.TorusBufferGeometry(5, 2, 50, 100);
+      this.uniforms['repeat'] = {type: "vec2", value: new THREE.Vector2(10,10)};
     }
     else if (this.geometry == 3) {
       var outlineGeometry = new THREE.CylinderBufferGeometry(3, 3, 8, 64, 100);
       var geometry = new THREE.CylinderBufferGeometry(3, 3, 8, 64, 100);
+      this.uniforms['repeat'] = {type: "vec2", value: new THREE.Vector2(10,10)};
     }
 
-
+    // Outline
     const outlineMaterial = this.createShaderMaterial(vertOutline, fragOutline);
     const outline = new THREE.Mesh(outlineGeometry, outlineMaterial);
     this.scene.add(outline);
-    
+
     const material = this.createShaderMaterial(vert, frag);
-    const cube = new THREE.Mesh(geometry, material);
-    this.scene.add(cube);
+    this.material = material;
+    const model = new THREE.Mesh(geometry, material);
+    this.scene.add(model);
     this.scene.background = new THREE.Color( 0xffffff );
 
 
-
-  }
-/*
-  update_textures(i) {
-        if (i == 0) {
-            tex5 = new THREE.TextureLoader().load(texture50);
-            tex4 = new THREE.TextureLoader().load(texture40);
-            tex3 = new THREE.TextureLoader().load(texture30);
-            tex2 = new THREE.TextureLoader().load(texture20);
-            tex1 = new THREE.TextureLoader().load(texture10);
-            tex0 = new THREE.TextureLoader().load(texture00);
-        }else if (i == 1) {
-            tex5 = new THREE.TextureLoader().load(texture51);
-            tex4 = new THREE.TextureLoader().load(texture41);
-            tex3 = new THREE.TextureLoader().load(texture31);
-            tex2 = new THREE.TextureLoader().load(texture21);
-            tex1 = new THREE.TextureLoader().load(texture11);
-            tex0 = new THREE.TextureLoader().load(texture01);
-        } else if (i == 2) {
-            tex5 = new THREE.TextureLoader().load(texture52);
-            tex4 = new THREE.TextureLoader().load(texture42);
-            tex3 = new THREE.TextureLoader().load(texture32);
-            tex2 = new THREE.TextureLoader().load(texture22);
-            tex1 = new THREE.TextureLoader().load(texture12);
-            tex0 = new THREE.TextureLoader().load(texture02);
-        } else if (i == 3) {
-            tex5 = new THREE.TextureLoader().load(texture53);
-            tex4 = new THREE.TextureLoader().load(texture43);
-            tex3 = new THREE.TextureLoader().load(texture33);
-            tex2 = new THREE.TextureLoader().load(texture23);
-            tex1 = new THREE.TextureLoader().load(texture13);
-            tex0 = new THREE.TextureLoader().load(texture03);
-        }
-  }
-*/
-
   update(dt) {
-    this.update_textures(this.texture_set);
-    if (!this.focussed) {
-      this.updateCamera(dt / 12000);
-    }
+    return;
   }
 }
