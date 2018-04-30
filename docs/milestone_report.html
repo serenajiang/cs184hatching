@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<style>
+  body {
+    padding: 100px;
+    width: 1000px;
+    margin: auto;
+    text-align: left;
+    font-weight: 300;
+    font-family: 'Open Sans', sans-serif;
+    color: #121212;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+</style>
+<title>Milestone Status Report</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans|Source+Sans+Pro" rel="stylesheet">
+</head>
+
+
+<body>
+
+<h1 align="middle">CS 184: Computer Graphics and Imaging, Spring 2018</h1>
+<h1 align="middle">Milestone Status Report</h1>
+<h2 align="middle">Jacob Holesinger, Serena Jiang, Andrew Xu</h2>
+
+<a href="https://drive.google.com/open?id=1sPACJ8hVytWbPDaAMBrdAOIfZ736viTT">Milestone Video</a><p></p>
+<a href="https://docs.google.com/presentation/d/1wvK4UFAKIPhqWXYDTlLJWhfWnrViRPy7R7-qr37ESZk/edit?usp=sharing">Presentation Slides</a>
+
+<br><br>
+
+<div>
+
+<h2 align="middle">Progress to date</h2>
+<p>So far we have acomplished the generation of TAMs, a spatial interpolation and an outline to make our shaded obejct distinct from the background. The generation of TAMs was done in python using PILLOW. First a stroke was drawn and its image was semi-randomly tesselated to acheive a hashing effect. In order to keep the strokes uniform, we used rejection sampling to eliminate areas that eneded up too dark. Differeing tone values were created by adding on additional strokes with each darkening value. As of now, the shading on our object is defined by the Blin-Phong model which we use to assign a tone value to each point. To acheive a good spatial blend, we blinearly interpolate inbetween the closest two tones. Finally, the outline was created with a dilated black version of the object placed just behind the hatch shaded object.</p>
+<h2 align="middle">Current Results</h2>
+<div align="middle">
+  <table style="width=100%">
+    <tr>
+      <td>
+        <img src="dashes.png" align="middle" width="400px"/>
+        <figcaption align="middle">Dash shading</figcaption>
+      </td>
+      <td>
+        <img src="dotpot.png" align="middle" width="400px"/>
+        <figcaption align="middle">Dot shading</figcaption>
+      </td>
+      <td>
+        <img src="renpot.png" align="middle" width="400px"/>
+        <figcaption align="middle">Text shading</figcaption>
+      </td>
+      <td>
+    </tr>
+  </table>
+</div>
+
+<h2 align="middle">Future Plans</h2>
+<p>We've gotten through most of the baseline funcitonality we proposed to acomplish in the first 3 weeks with the exception of our equivalent of mipmaping. Since strokes on all parts of the object should have the same size assuming that they were handdrawn, parts of the object that are farther away will use a smaller texture image to appear at the same scale. Thus our "mipmapping" corresponds to adding in this varying texture size. In addition to mipmapping, in the coming week we hope to add in the ability to import mesh models other than the base teapot and incorporate varying camera distances to show off the mip-mapping. We will also refine our TAMs, possibly incorporating handrawn textures, color and more varied stroke styles.</p>
+
+</body>
+</html>

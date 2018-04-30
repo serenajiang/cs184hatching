@@ -80,17 +80,14 @@ export default class extends Renderer {
     };
 
     this.setLight(false);
-    const hatchMaterial = this.createShaderMaterial(vert, frag);
+
     var loader = new THREE.JSONLoader();
-    loader.load(
-      '../models/stanfurd.json',
-      function ( geometry ) {
-
-        const object = new THREE.Mesh(geometry, hatchMaterial);
-        this.scene.add( object );
-      }
-
-    );
+    loader.load('monkey.json', handle_load);
+    function handle_load( geometry, material ) {
+      var material = this.createShaderMaterial(vert, frag);
+      var mesh = new THREE.Mesh(geometry, material);
+      this.scene.add(mesh);
+    }
 
     this.scene.background = new THREE.Color( 0xffffff );
   }
