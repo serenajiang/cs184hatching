@@ -25,11 +25,14 @@ void main() {
   vec3 lPos_mod = lPosition;
   vec3 h = normalize((lPos_mod - fPosition) + (cameraPosition - fPosition));
   float r2 = distance(lPos_mod, fPosition) * distance(lPos_mod, fPosition);
-  vec3 color = vec3(ambient)
+  vec3 amb_term = vec3(ambient);
+  vec3 color = amb_term
   + diffuse * lIntensity/r2 * max(0.0, dot(normalize(fNormal), normalize(lPos_mod)))
   + specular * lIntensity/r2 * pow(max(0.0, dot(normalize(fNormal), h)), 60.0);
   float brightness = dot(color, vec3(1./3.,1./3.,1./3.));
 
+  float minB = dot(amb_term, vec3(1./3.,1./3.,1./3.));
+  float maxB = dot(amb_term + diffuse * (lIntensity/r2) + specular * (lIntensity/r2), vec3(1./3.,1./3.,1./3.));
   float percent_bright = (brightness - minB) / (maxB - minB);
 
   float incr = 1.0 / numLevels;
