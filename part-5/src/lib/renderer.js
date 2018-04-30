@@ -29,6 +29,7 @@ class Renderer {
     window.addEventListener('mousedown',   this.onmousedown);
     window.addEventListener('mouseup',     this.onmouseup);
     window.addEventListener('mousemove',   this.onmousemove);
+    window.addEventListener('mousewheel', this.onMouseWheel);
 
   }
 
@@ -39,6 +40,7 @@ class Renderer {
     window.addEventListener('mousedown',   this.onmousedown);
     window.addEventListener('mouseup',     this.onmouseup);
     window.addEventListener('mousemove',   this.onmousemove);
+
   }
 
   onresize = () => {
@@ -101,6 +103,17 @@ class Renderer {
     const dy = (this.inputState.lastMouse[1] - y) / this.view.height;
     this.inputState.lastMouse = [x, y];
     this.updateCamera(dx, dy);
+  };
+
+  onMouseWheel = ( e ) => {
+
+    var fovMAX = 160;
+    var fovMIN = 1;
+
+    this.camera.fov -= e.wheelDeltaY * 0.05;
+    this.camera.fov = Math.max( Math.min( this.camera.fov, fovMAX ), fovMIN );
+    this.camera.projectionMatrix = new THREE.Matrix4().makePerspective(this.camera.fov, window.innerWidth / window.innerHeight, this.camera.near, this.camera.far);
+
   };
 
   init() {
