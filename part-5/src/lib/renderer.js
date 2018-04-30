@@ -107,7 +107,7 @@ class Renderer {
     this.uniforms = {
       time: { type: 'f', value: 0 }
     };
-    this.importTextures();
+
     this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera(75, this.width / this.height, 0.1, 1000);
     this.cameraState = {
@@ -126,7 +126,7 @@ class Renderer {
     // Light settings
     this.ambient = .3;
     this.diffuse = .75;
-    this.specular = 0.;
+    this.specular = 0.05;
     this.uniforms["ambient"] = {type: "f", value: this.ambient};
     this.uniforms["diffuse"] = {type: "f", value: this.diffuse};
     this.uniforms["specular"] = {type: "f", value: this.specular};
@@ -259,7 +259,7 @@ class Renderer {
     this.material.uniforms.ambient.value = this.ambient;
     this.material.uniforms.specular.value = this.specular;
     this.material.uniforms.diffuse.value = this.diffuse;
-    this.initScene();
+    // this.initScene();
     this.renderer.render(this.scene, this.camera);
   }
 
