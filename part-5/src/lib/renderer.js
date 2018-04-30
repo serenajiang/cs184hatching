@@ -470,40 +470,6 @@ class Renderer {
   }
 
   refresh() {
-
-    this.importTextures();
-    this.scene = new THREE.Scene();
-    this.camera = new THREE.PerspectiveCamera(75, this.width / this.height, 0.1, 1000);
-    this.cameraState = {
-      theta: 1.8,
-      phi: 0,
-      distance: 15,
-    };
-    this.camera.position.set( 10, 10, 10 );
-    this.updateCamera();
-
-    this.renderer = new THREE.WebGLRenderer({
-      canvas: this.view,
-      antialias: true
-    });
-    this.renderer.setClearColor(new THREE.Color(0.078, 0.09, 0.11));
-    // Light settings
-    this.ambient = .3;
-    this.diffuse = .75;
-    this.specular = 0.;
-    this.uniforms["ambient"] = {type: "f", value: this.ambient};
-    this.uniforms["diffuse"] = {type: "f", value: this.diffuse};
-    this.uniforms["specular"] = {type: "f", value: this.specular};
-    this.inputState = {
-      key: {},
-      mouse: {},
-      lastMouse: null
-    };
-
-    this.focussed = true;
-    this.stats.setMode(0);
-    this.light_setting = 0;
-    this.geometry = 0;
     // Outline
     const outlineMaterial = this.createShaderMaterial(vertOutline, fragOutline);
     const outline = new THREE.Mesh(outlineGeometry, outlineMaterial);
