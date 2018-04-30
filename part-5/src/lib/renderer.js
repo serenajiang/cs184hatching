@@ -103,9 +103,6 @@ class Renderer {
     const dy = (this.inputState.lastMouse[1] - y) / this.view.height;
     this.inputState.lastMouse = [x, y];
     this.updateCamera(dx, dy);
-  };
-
-  onMouseWheel = ( e ) => {
 
     var fovMAX = 160;
     var fovMIN = 1;
@@ -113,8 +110,8 @@ class Renderer {
     this.camera.fov -= e.wheelDeltaY * 0.05;
     this.camera.fov = Math.max( Math.min( this.camera.fov, fovMAX ), fovMIN );
     this.camera.projectionMatrix = new THREE.Matrix4().makePerspective(this.camera.fov, window.innerWidth / window.innerHeight, this.camera.near, this.camera.far);
-
   };
+
 
   init() {
     this.scene = new THREE.Scene();

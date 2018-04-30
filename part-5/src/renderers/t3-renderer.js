@@ -70,7 +70,7 @@ export default class extends Renderer {
 
     var texture_set = 4;
     //set num_levels between 1 and 6 for how many tones you want
-    var num_levels = 1.0;
+    var num_levels = 6.0;
     this.uniforms['numLevels'] = { value: num_levels };
 
     var tex5 = new THREE.TextureLoader().load(texture50);
