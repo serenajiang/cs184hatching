@@ -5,11 +5,11 @@ import Renderer from '../lib/renderer';
 import vert from '../shaders/task-3/texture.vert';
 import frag from '../shaders/task-3/texture.frag';
 
-import texture5 from '../textures/dick/5.png';
-import texture4 from '../textures/dick/4.png';
-import texture3 from '../textures/dick/3.png';
-import texture2 from '../textures/dick/2.png';
-import texture1 from '../textures/dick/1.png';
+import texture5 from '../textures/dick/50.png';
+import texture4 from '../textures/dick/40.png';
+import texture3 from '../textures/dick/30.png';
+import texture2 from '../textures/dick/20.png';
+import texture1 from '../textures/dick/10.png';
 import texture0 from '../textures/dick/0.png';
 
 var THREE = require('three')
@@ -80,17 +80,14 @@ export default class extends Renderer {
     };
 
     this.setLight(false);
-    const hatchMaterial = this.createShaderMaterial(vert, frag);
+
     var loader = new THREE.JSONLoader();
-    loader.load(
-      '../models/stanfurd.json',
-      function ( geometry ) {
-
-        const object = new THREE.Mesh(geometry, hatchMaterial);
-        this.scene.add( object );
-      }
-
-    );
+    loader.load('monkey.json', handle_load);
+    function handle_load( geometry, material ) {
+      var material = this.createShaderMaterial(vert, frag);
+      var mesh = new THREE.Mesh(geometry, material);
+      this.scene.add(mesh);
+    }
 
     this.scene.background = new THREE.Color( 0xffffff );
   }
