@@ -6,6 +6,9 @@ uniform sampler2D texture23;
 uniform sampler2D texture33;
 uniform sampler2D texture43;
 uniform sampler2D texture53;
+uniform float ambient;
+uniform float diffuse;
+uniform float specular;
 uniform float numLevels;
 varying vec2 fUv;
 
@@ -19,24 +22,14 @@ varying vec3 fNormal;
 
 void main() {
 
-  // vec3 h = normalize((lPosition - fPosition) + (cameraPosition - fPosition));
-  // float r2 = distance(lPosition, fPosition) * distance(lPosition, fPosition);
-
-  vec3 h = normalize((lPosition - fPosition) + (cameraPosition - fPosition));
-  float r2 = distance(lPosition, fPosition) * distance(lPosition, fPosition);
-  vec3 ambient = vec3(0.0, 0.0, 0.0);
-  float kd = 0.7;
-  float ks = 0.0;
-  float spec_p = 20.0;
-  vec3 diffuse = kd * lIntensity/r2 * max(0.0, dot(normalize(fNormal), normalize(lPosition)));
-  vec3 specular = ks * lIntensity/r2 * pow(max(0.0, dot(normalize(fNormal), h)), spec_p);
-  vec3 color = ambient + diffuse + specular;
-
-  vec3 maxColor = ambient + kd * lIntensity/r2 + ks * lIntensity/r2;
-  float maxB = dot(maxColor, vec3(1./3.,1./3.,1./3.));
-  float minB = dot(ambient, vec3(1./3.,1./3.,1./3.));
+  vec3 lPos_mod = lPosition;
+  vec3 h = normalize((lPos_mod - fPosition) + (cameraPosition - fPosition));
+  float r2 = distance(lPos_mod, fPosition) * distance(lPos_mod, fPosition);
+  vec3 color = vec3(ambient)
+  + diffuse * lIntensity/r2 * max(0.0, dot(normalize(fNormal), normalize(lPos_mod)))
+  + specular * lIntensity/r2 * pow(max(0.0, dot(normalize(fNormal), h)), 60.0);
   float brightness = dot(color, vec3(1./3.,1./3.,1./3.));
-  
+
   float percent_bright = (brightness - minB) / (maxB - minB);
 
   float incr = 1.0 / numLevels;
@@ -100,4 +93,4 @@ void main() {
 //   float rat = (brightness - 0.8)/0.2;
 //   gl_FragColor = texture2D(texture03, fUv);// }
 // }
-// }
+//}

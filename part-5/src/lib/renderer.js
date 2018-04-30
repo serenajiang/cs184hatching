@@ -104,6 +104,10 @@ class Renderer {
   };
 
   init() {
+    this.uniforms = {
+      time: { type: 'f', value: 0 }
+    };
+    this.importTextures();
     this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera(75, this.width / this.height, 0.1, 1000);
     this.cameraState = {
@@ -119,9 +123,13 @@ class Renderer {
       antialias: true
     });
     this.renderer.setClearColor(new THREE.Color(0.078, 0.09, 0.11));
-    this.uniforms = {
-      time: { type: 'f', value: 0 }
-    };
+    // Light settings
+    this.ambient = .3;
+    this.diffuse = .75;
+    this.specular = 0.;
+    this.uniforms["ambient"] = {type: "f", value: this.ambient};
+    this.uniforms["diffuse"] = {type: "f", value: this.diffuse};
+    this.uniforms["specular"] = {type: "f", value: this.specular};
     this.inputState = {
       key: {},
       mouse: {},
@@ -144,13 +152,14 @@ class Renderer {
     this.scene.add(object);
   }
 
-  setLight(fixed=false,x=25, y=15, z=25, r=1, g=1, b=1) {
+  setLight(setting,x=25, y=15, z=25, r=1, g=1, b=1) {
 
     // FOR LIGHT INDEPENDENT OF CAMERA
-    if (!this.light_setting) {
-      const lGeometry = new THREE.BoxGeometry(1, 1, 1);
-      const lMaterial = new THREE.MeshBasicMaterial({ color: new THREE.Color(r, g, b) });
-      const light = new THREE.Mesh(lGeometry, lMaterial);
+    if (setting == 0) {
+      // const lGeometry = new THREE.BoxGeometry(1, 1, 1);
+      // const lMaterial = new THREE.MeshBasicMaterial({ color: new THREE.Color(r, g, b) });
+      // const light = new THREE.Mesh(lGeometry, lMaterial);
+      const light = new THREE.PointLight( 0xffffff, 1 );
       light.position.set(25, 15, 25);
 
       this.light = light;
@@ -170,9 +179,6 @@ class Renderer {
 
       this.camera.add(light );
       this.scene.add(this.camera);
-      this.updateCamera();
-
-
       this.light = light;
       this.uniforms['lPosition'] = {
         t: 'vec3',
@@ -183,16 +189,18 @@ class Renderer {
         t: 'vec3',
         value: new THREE.Vector3(r * 100, g * 100, b * 100)
       }
+      this.updateCamera();
     }
   }
 
   initGUI() {
     var gui = new dat.GUI();
-
     gui.add(this, "light_setting", { 'Static': 0, 'Camera': 1 });
     gui.add(this, "geometry", {'Teapot': 0, 'Sphere': 1, "Torus" : 2, "Cylinder": 3});
+    gui.add(this, "ambient", 0.0, 1.0);
+    gui.add(this, "diffuse", 0.0, 1.0);
+    gui.add(this, "specular", 0.0, 1.0);
     gui.add(this, "update_settings");
-
   }
 
   update_settings() {
@@ -248,6 +256,10 @@ class Renderer {
   }
 
   render() {
+    this.material.uniforms.ambient.value = this.ambient;
+    this.material.uniforms.specular.value = this.specular;
+    this.material.uniforms.diffuse.value = this.diffuse;
+    this.initScene();
     this.renderer.render(this.scene, this.camera);
   }
 
