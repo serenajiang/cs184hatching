@@ -6,13 +6,10 @@ uniform sampler2D texture23;
 uniform sampler2D texture33;
 uniform sampler2D texture43;
 uniform sampler2D texture53;
-<<<<<<< HEAD
 uniform float ambient;
 uniform float diffuse;
 uniform float specular;
-=======
 uniform float numLevels;
->>>>>>> 6c727006876475d2bb45c8a17352b0019748fcdf
 varying vec2 fUv;
 
 uniform vec3 lPosition;
@@ -25,33 +22,14 @@ varying vec3 fNormal;
 
 void main() {
 
-<<<<<<< HEAD
   vec3 lPos_mod = lPosition;
   vec3 h = normalize((lPos_mod - fPosition) + (cameraPosition - fPosition));
   float r2 = distance(lPos_mod, fPosition) * distance(lPos_mod, fPosition);
   vec3 color = vec3(ambient)
   + diffuse * lIntensity/r2 * max(0.0, dot(normalize(fNormal), normalize(lPos_mod)))
   + specular * lIntensity/r2 * pow(max(0.0, dot(normalize(fNormal), h)), 60.0);
-=======
-  // vec3 h = normalize((lPosition - fPosition) + (cameraPosition - fPosition));
-  // float r2 = distance(lPosition, fPosition) * distance(lPosition, fPosition);
-
-  vec3 h = normalize((lPosition - fPosition) + (cameraPosition - fPosition));
-  float r2 = distance(lPosition, fPosition) * distance(lPosition, fPosition);
-  vec3 ambient = vec3(0.0, 0.0, 0.0);
-  float kd = 0.7;
-  float ks = 0.0;
-  float spec_p = 20.0;
-  vec3 diffuse = kd * lIntensity/r2 * max(0.0, dot(normalize(fNormal), normalize(lPosition)));
-  vec3 specular = ks * lIntensity/r2 * pow(max(0.0, dot(normalize(fNormal), h)), spec_p);
-  vec3 color = ambient + diffuse + specular;
-
-  vec3 maxColor = ambient + kd * lIntensity/r2 + ks * lIntensity/r2;
-  float maxB = dot(maxColor, vec3(1./3.,1./3.,1./3.));
-  float minB = dot(ambient, vec3(1./3.,1./3.,1./3.));
->>>>>>> 6c727006876475d2bb45c8a17352b0019748fcdf
   float brightness = dot(color, vec3(1./3.,1./3.,1./3.));
-  
+
   float percent_bright = (brightness - minB) / (maxB - minB);
 
   float incr = 1.0 / numLevels;
