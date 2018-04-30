@@ -266,10 +266,10 @@ class Renderer {
   }
 
   render() {
+    this.initScene();
     this.material.uniforms.ambient.value = this.ambient;
     this.material.uniforms.specular.value = this.specular;
     this.material.uniforms.diffuse.value = this.diffuse;
-    this.initScene();
     this.renderer.render(this.scene, this.camera);
   }
 

@@ -60,6 +60,8 @@ var THREE = require('three')
 
 export default class extends Renderer {
 
+
+  importTextures() {
     var texture_set = 1;
     //set num_levels between 1 and 6 for how many tones you want
     var num_levels = 6.0;
@@ -104,7 +106,6 @@ export default class extends Renderer {
         }
     }
 
-  importTextures() {
     var tex5 = new THREE.TextureLoader().load(texture53);
 
     tex5.wrapS = THREE.RepeatWrapping;
@@ -161,6 +162,8 @@ export default class extends Renderer {
     };
 
   }
+
+
   initScene() {
     if (!this.checkShader(vert, frag)) {
       this.setErrorScene();
@@ -201,6 +204,7 @@ export default class extends Renderer {
     const model = new THREE.Mesh(geometry, material);
     this.scene.add(model);
     this.scene.background = new THREE.Color( 0xffffff );
+    }
 
 
   update(dt) {
