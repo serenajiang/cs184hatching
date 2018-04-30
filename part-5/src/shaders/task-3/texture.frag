@@ -1,11 +1,11 @@
 precision highp float;
 
-uniform sampler2D texture03;
-uniform sampler2D texture13;
-uniform sampler2D texture23;
-uniform sampler2D texture33;
-uniform sampler2D texture43;
-uniform sampler2D texture53;
+uniform sampler2D texture0;
+uniform sampler2D texture1;
+uniform sampler2D texture2;
+uniform sampler2D texture3;
+uniform sampler2D texture4;
+uniform sampler2D texture5;
 varying vec2 fUv;
 
 uniform vec3 lPosition;
@@ -33,27 +33,27 @@ void main() {
   }
   else if (brightness <= 0.4) {
     float rat = (brightness - .3)/0.1;
-    gl_FragColor = (1.-rat)*texture2D(texture53, fUv) + rat*texture2D(texture43, fUv);
+    gl_FragColor = (1.-rat)*texture2D(texture5, fUv) + rat*texture2D(texture4, fUv);
   }
   else if (brightness <= 0.5) {
     float rat = (brightness - 0.4)/0.1;
-    gl_FragColor = (1.-rat)*texture2D(texture43, fUv) + (rat)*texture2D(texture33, fUv);
+    gl_FragColor = (1.-rat)*texture2D(texture4, fUv) + (rat)*texture2D(texture3, fUv);
   }
   else if (brightness <= 0.6) {
     float rat = (brightness - 0.5)/0.1;
-    gl_FragColor = (1.-rat)*texture2D(texture33, fUv) + (rat)*texture2D(texture23, fUv);
+    gl_FragColor = (1.-rat)*texture2D(texture3, fUv) + (rat)*texture2D(texture2, fUv);
   }
   else if (brightness <= 0.7) {
     float rat = (brightness - 0.6)/0.1;
-    gl_FragColor = (1.-rat)*texture2D(texture23, fUv) + (rat)*texture2D(texture13, fUv);
+    gl_FragColor = (1.-rat)*texture2D(texture2, fUv) + (rat)*texture2D(texture1, fUv);
   }
   else if (brightness <= 0.8) {
     float rat = (brightness - 0.7)/0.1;
-    gl_FragColor = (1.-rat)*texture2D(texture13, fUv) + (rat)*texture2D(texture03, fUv);
+    gl_FragColor = (1.-rat)*texture2D(texture1, fUv) + (rat)*texture2D(texture0, fUv);
   }
   else {
     float rat = (brightness - 0.8)/0.2;
-    gl_FragColor = (1.-rat)*texture2D(texture03, fUv) + (rat)*vec4(1.,1.,1.,1.);
+    gl_FragColor = (1.-rat)*texture2D(texture0, fUv) + (rat)*vec4(1.,1.,1.,1.);
   }
 }
 // if (dot(fNormal, normalize(cameraPosition - fPosition)) < 0.0) {
