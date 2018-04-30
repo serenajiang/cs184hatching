@@ -40,18 +40,10 @@ import texture10 from '../textures/test/ayy10.bmp';
 import texture00 from '../textures/test/ayy00.bmp';
 
 var THREE = require('three')
-var OrbitControls = require('three-orbit-controls')(THREE)
 
 export default class extends Renderer {
-  initScene() {
-    if (!this.checkShader(vert, frag)) {
-      this.setErrorScene();
-      return;
-    }
-    this.scene.children = []; // remove all geometry
-    this.setLight(this.light_setting);
 
-
+  importTextures() {
     var tex5 = new THREE.TextureLoader().load(texture53);
     // var tex5 = new THREE.Texture(texture53);
     // tex5.mipmaps[0] = tex5;
@@ -61,10 +53,10 @@ export default class extends Renderer {
 
     tex5.wrapS = THREE.RepeatWrapping;
     tex5.wrapT = THREE.RepeatWrapping;
-    tex5.repeat.set(10,10);
+
     this.uniforms['texture53'] = {
       type: "t",
-      value: tex5//new THREE.TextureLoader().load(texture)
+      value: tex5
     };
     var tex4 = new THREE.TextureLoader().load(texture43);
     // var tex4 = new THREE.Texture(texture43);
@@ -75,10 +67,10 @@ export default class extends Renderer {
 
     tex4.wrapS = THREE.RepeatWrapping;
     tex4.wrapT = THREE.RepeatWrapping;
-    tex4.repeat.set(10,10);
+
     this.uniforms['texture43'] = {
       type: "t",
-      value: tex4//new THREE.TextureLoader().load(texture)
+      value: tex4
     };
 
     var tex3 = new THREE.TextureLoader().load(texture33);
@@ -90,10 +82,10 @@ export default class extends Renderer {
 
     tex3.wrapS = THREE.RepeatWrapping;
     tex3.wrapT = THREE.RepeatWrapping;
-    tex3.repeat.set(10,10);
+
     this.uniforms['texture33'] = {
       type: "t",
-      value: tex3//new THREE.TextureLoader().load(texture)
+      value: tex3
     };
 
     var tex2 = new THREE.TextureLoader().load(texture23);
@@ -104,10 +96,10 @@ export default class extends Renderer {
     // tex2.mipmaps[3] = new THREE.TextureLoader().load(texture20);
     tex2.wrapS = THREE.RepeatWrapping;
     tex2.wrapT = THREE.RepeatWrapping;
-    tex2.repeat.set(10,10);
+
     this.uniforms['texture23'] = {
       type: "t",
-      value: tex2//new THREE.TextureLoader().load(texture)
+      value: tex2
     };
 
     var tex1 = new THREE.TextureLoader().load(texture13);
@@ -119,10 +111,10 @@ export default class extends Renderer {
 
     tex1.wrapS = THREE.RepeatWrapping;
     tex1.wrapT = THREE.RepeatWrapping;
-    tex1.repeat.set(10,10);
+    // tex1.repeat.set(10,10);
     this.uniforms['texture13'] = {
       type: "t",
-      value: tex1//new THREE.TextureLoader().load(texture)
+      value: tex1
     };
     var tex0 = new THREE.TextureLoader().load(texture03);
     // var tex0 = new THREE.Texture(texture03);
@@ -133,50 +125,56 @@ export default class extends Renderer {
 
     tex0.wrapS = THREE.RepeatWrapping;
     tex0.wrapT = THREE.RepeatWrapping;
-    tex0.repeat.set(10,10);
     this.uniforms['texture03'] = {
       type: "t",
-      value: tex0//new THREE.TextureLoader().load(texture)
+      value: tex0
     };
 
-    // Outline
+  }
+  initScene() {
+    if (!this.checkShader(vert, frag)) {
+      this.setErrorScene();
+      return;
+    }
+    this.scene.children = []; // remove all geometry
+    this.setLight(this.light_setting);
 
     if (this.geometry == 0) {
       var outlineGeometry = new THREE.TeapotBufferGeometry(4, 32, 32);
       var geometry = new THREE.TeapotBufferGeometry(4, 32, 32);
+      this.uniforms['repeat'] = {type: "vec2", value: new THREE.Vector2(2,2)};
     }
     else if (this.geometry == 1) {
-      var outlineGeometry = new THREE.SphereBufferGeometry(5, 32, 32);
+      var outlineGeometry = new THREE.SphereBufferGeometry(5, 64, 64);
       var geometry = new THREE.SphereBufferGeometry(5, 32, 32);
+      this.uniforms['repeat'] = {type: "vec2", value: new THREE.Vector2(10,10)};
     }
 
     else if (this.geometry == 2) {
-      var outlineGeometry = new THREE.TorusBufferGeometry(5, 2, 16, 100);
-      var geometry = new THREE.TorusBufferGeometry(5, 2, 16, 100);
+      var outlineGeometry = new THREE.TorusBufferGeometry(5, 2, 50, 100);
+      var geometry = new THREE.TorusBufferGeometry(5, 2, 50, 100);
+      this.uniforms['repeat'] = {type: "vec2", value: new THREE.Vector2(10,10)};
     }
     else if (this.geometry == 3) {
       var outlineGeometry = new THREE.CylinderBufferGeometry(3, 3, 8, 64, 100);
       var geometry = new THREE.CylinderBufferGeometry(3, 3, 8, 64, 100);
+      this.uniforms['repeat'] = {type: "vec2", value: new THREE.Vector2(10,10)};
     }
 
-    //const outlineGeometry = new THREE.TeapotBufferGeometry(4, 32, 32);
+    // Outline
     const outlineMaterial = this.createShaderMaterial(vertOutline, fragOutline);
     const outline = new THREE.Mesh(outlineGeometry, outlineMaterial);
     this.scene.add(outline);
 
-    // const geometry = new THREE.TeapotBufferGeometry(4, 32, 32);
-    // const geometry = new THREE.SphereBufferGeometry(5, 32, 32);
     const material = this.createShaderMaterial(vert, frag);
-    const cube = new THREE.Mesh(geometry, material);
-    this.scene.add(cube);
+    this.material = material;
+    const model = new THREE.Mesh(geometry, material);
+    this.scene.add(model);
     this.scene.background = new THREE.Color( 0xffffff );
 
   }
 
-
   update(dt) {
-    if (!this.focussed) {
-      this.updateCamera(dt / 12000);
-    }
+    return;
   }
 }
