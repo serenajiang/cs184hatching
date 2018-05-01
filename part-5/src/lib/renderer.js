@@ -241,7 +241,7 @@ class Renderer {
     gui.add(this, "diffuse", 0.0, 1.0);
     gui.add(this, "specular", 0.0, 1.0);
     // Change the name
-    gui.add(this, "texture_setting", {'Lines': 0, "CHANGE_THIS": 1});
+    gui.add(this, "texture_setting", {'Lines': 0, "Lines 2": 1});
   }
 
   begin() {

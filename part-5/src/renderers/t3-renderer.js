@@ -61,6 +61,22 @@ import texture56 from "../textures/pencil/56.png";
 import texture57 from "../textures/pencil/57.png";
 import texture58 from "../textures/pencil/58.png";
 
+import crosstexture00 from "../textures/test/ayy00.bmp";
+import crosstexture01 from "../textures/test/ayy01.bmp";
+import crosstexture02 from "../textures/test/ayy02.bmp";
+import crosstexture03 from "../textures/test/ayy03.bmp";
+import crosstexture10 from "../textures/test/ayy00.bmp";
+import crosstexture11 from "../textures/test/ayy11.bmp";
+import crosstexture12 from "../textures/test/ayy12.bmp";
+import crosstexture13 from "../textures/test/ayy13.bmp";
+import crosstexture30 from "../textures/test/ayy30.bmp";
+import crosstexture31 from "../textures/test/ayy31.bmp";
+import crosstexture32 from "../textures/test/ayy32.bmp";
+import crosstexture33 from "../textures/test/ayy33.bmp";
+import crosstexture40 from "../textures/test/ayy40.bmp";
+import crosstexture41 from "../textures/test/ayy41.bmp";
+import crosstexture42 from "../textures/test/ayy42.bmp";
+import crosstexture43 from "../textures/test/ayy43.bmp";
 
 var THREE = require('three')
 
@@ -126,6 +142,25 @@ export default class extends Renderer {
     var tex57 = new THREE.TextureLoader().load(texture57);
     var tex58 = new THREE.TextureLoader().load(texture58);
 
+    var crosstex00 = new THREE.TextureLoader().load(crosstexture00);
+    var crosstex01 = new THREE.TextureLoader().load(crosstexture01);
+    var crosstex02 = new THREE.TextureLoader().load(crosstexture02);
+    var crosstex03 = new THREE.TextureLoader().load(crosstexture03);
+    var crosstex10 = new THREE.TextureLoader().load(crosstexture10);
+    var crosstex11 = new THREE.TextureLoader().load(crosstexture11);
+    var crosstex12 = new THREE.TextureLoader().load(crosstexture12);
+    var crosstex13 = new THREE.TextureLoader().load(crosstexture13);
+    var crosstex30 = new THREE.TextureLoader().load(crosstexture30);
+    var crosstex31 = new THREE.TextureLoader().load(crosstexture31);
+    var crosstex32 = new THREE.TextureLoader().load(crosstexture32);
+    var crosstex33 = new THREE.TextureLoader().load(crosstexture33);
+    var crosstex40 = new THREE.TextureLoader().load(crosstexture40);
+    var crosstex41 = new THREE.TextureLoader().load(crosstexture41);
+    var crosstex42 = new THREE.TextureLoader().load(crosstexture42);
+    var crosstex43 = new THREE.TextureLoader().load(crosstexture43);
+
+
+
     tex00.minFilter = THREE.LinearFilter;
     tex01.minFilter = THREE.LinearFilter;
     tex02.minFilter = THREE.LinearFilter;
@@ -182,10 +217,15 @@ export default class extends Renderer {
     tex58.minFilter = THREE.LinearFilter;
     // Add a new 16x16 array of textures for more textures
     this.textures = [
+                    [crosstex00,crosstex01,crosstex02,crosstex03,
+                    crosstex10,crosstex11,crosstex12,crosstex13,
+                    crosstex30,crosstex31,crosstex32,crosstex33,
+                    crosstex40,crosstex41,crosstex42,crosstex43],
+                    
                     [tex03,tex05,tex06,tex08,
                     tex13,tex15,tex16,tex18,
-                    tex43,tex45,tex46,tex48,
-                    tex53,tex55,tex56,tex58],
+                    tex32,tex35,tex36,tex37,
+                    tex43,tex45,tex46,tex48],
                   ];
     this.uniforms['textures'] = {
       value: this.textures[0]
