@@ -8,7 +8,9 @@ varying vec2 fUv;
 uniform vec3 lPosition;
 uniform vec3 lIntensity;
 uniform vec3 cameraPosition;
-
+uniform float ambient;
+uniform float specular;
+uniform float diffuse;
 varying vec3 fPosition;
 varying vec3 fNormal;
 
@@ -24,8 +26,8 @@ float getTone() {
   // returns float in [0.0, 3.0), with higher tone corresponding to darker shade
   vec3 h = normalize((lPosition - fPosition) + (cameraPosition - fPosition));
   float r2 = distance(lPosition, fPosition) * distance(lPosition, fPosition);
-  vec3 color = 0.75 * lIntensity/r2 * max(0.0, dot(normalize(fNormal), normalize(lPosition)))
-  + 0.00 * lIntensity/r2 * pow(max(0.0, dot(normalize(fNormal), h)), 60.0);
+  vec3 color = vec3(ambient/5.) + diffuse * lIntensity/r2 * max(0.0, dot(normalize(fNormal), normalize(lPosition)))
+  + specular * lIntensity/r2 * pow(max(0.0, dot(normalize(fNormal), h)), 60.0);
   float brightness = dot(color, vec3(1./3.,1./3.,1./3.));
   return 3.0 - max(0.0, min(.5999, brightness)) * 3.0/.6;
 }

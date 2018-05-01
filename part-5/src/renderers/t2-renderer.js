@@ -13,7 +13,6 @@ import texture1 from '../textures/dick/10.png';
 import texture0 from '../textures/dick/0.png';
 
 var THREE = require('three')
-var OrbitControls = require('three-orbit-controls')(THREE)
 
 export default class extends Renderer {
   initScene() {

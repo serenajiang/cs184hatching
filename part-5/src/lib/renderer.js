@@ -1,7 +1,6 @@
 // import THREE from '../lib/three';
 import dat from 'dat.gui';
 var THREE = require('three')
-var OrbitControls = require('three-orbit-controls')(THREE)
 class Renderer {
 
   destroy() {
@@ -104,11 +103,42 @@ class Renderer {
   };
 
   init() {
+    this.geometries = [
+      new THREE.TeapotBufferGeometry(4, 32, 32),
+      new THREE.SphereBufferGeometry(5, 64, 64),
+      new THREE.TorusBufferGeometry(5, 2, 50, 100),
+      new THREE.CylinderBufferGeometry(3, 3, 8, 64, 100),
+    ]
+    this.outlines = [
+      new THREE.TeapotBufferGeometry(4, 32, 32),
+      new THREE.SphereBufferGeometry(5, 64, 64),
+      new THREE.TorusBufferGeometry(5, 2, 50, 100),
+      new THREE.CylinderBufferGeometry(3, 3, 8, 64, 100),
+    ]
+    this.focussed = true;
+    this.stats.setMode(0);
+    this.light_setting = 0;
+    this.geometry_setting = 0;
+    this.geometry = null;
+    this.outline_geometry = null;
+    this.mesh = null;
+    this.outline_mesh = null;
+    this.light = null;
+    this.textures = null;
+    this.texture_setting = 0;
+    this.ambient = .3;
+    this.diffuse = .75;
+    this.specular = 0.05;
+
     this.uniforms = {
-      time: { type: 'f', value: 0 }
+      time: { type: 'f', value: 0 },
+      ambient: {type: "f", value: this.ambient},
+      diffuse: {type: "f", value: this.diffuse},
+      specular: {type: "f", value: this.specular},
     };
-    this.importTextures();
+
     this.scene = new THREE.Scene();
+    this.scene.background = new THREE.Color( 0xffffff );
     this.camera = new THREE.PerspectiveCamera(75, this.width / this.height, 0.1, 1000);
     this.cameraState = {
       theta: 1.8,
@@ -123,25 +153,35 @@ class Renderer {
       antialias: true
     });
     this.renderer.setClearColor(new THREE.Color(0.078, 0.09, 0.11));
-    // Light settings
-    this.ambient = .3;
-    this.diffuse = .75;
-    this.specular = 0.;
-    this.uniforms["ambient"] = {type: "f", value: this.ambient};
-    this.uniforms["diffuse"] = {type: "f", value: this.diffuse};
-    this.uniforms["specular"] = {type: "f", value: this.specular};
     this.inputState = {
       key: {},
       mouse: {},
       lastMouse: null
     };
-    this.focussed = true;
-    this.stats.setMode(0);
-    this.light_setting = 0;
-    this.geometry = 0;
-    this.initScene();
+
+    this.addLight();
+    this.initMaterials();
+    this.addMesh();
     this.initGUI();
     this.attachListeners();
+  }
+
+  addMesh() {
+    if (this.mesh !== null) {
+      this.scene.remove(this.mesh);
+      this.scene.remove(this.outline_mesh);
+      this.geometry.dispose();
+      this.outline_geometry.dispose();
+    }
+
+    this.geometry = this.geometries[this.geometry_setting];
+    this.outline_geometry = this.outlines[this.geometry_setting];
+
+    this.mesh = new THREE.Mesh(this.geometry, this.material);
+    this.outline_mesh = new THREE.Mesh(this.outline_geometry, this.outline_material);
+
+    this.scene.add(this.mesh);
+    this.scene.add(this.outline_mesh);
   }
 
   setErrorScene() {
@@ -152,34 +192,29 @@ class Renderer {
     this.scene.add(object);
   }
 
-  setLight(setting,x=25, y=15, z=25, r=1, g=1, b=1) {
-
-    // FOR LIGHT INDEPENDENT OF CAMERA
-    if (setting == 0) {
-      // const lGeometry = new THREE.BoxGeometry(1, 1, 1);
-      // const lMaterial = new THREE.MeshBasicMaterial({ color: new THREE.Color(r, g, b) });
-      // const light = new THREE.Mesh(lGeometry, lMaterial);
-      const light = new THREE.PointLight( 0xffffff, 1 );
-      light.position.set(25, 15, 25);
-
-      this.light = light;
-      this.uniforms['lPosition'] = {
-        t: 'vec3',
-        value: this.light.position
-      };
-
-      this.uniforms['lIntensity'] = {
-        t: 'vec3',
-        value: new THREE.Vector3(r * 1000, g * 1000, b * 1000)
+  addLight() {
+      if (this.light !== null) {
+        this.scene.remove(this.light);
       }
-    }
-    else {
-    // FOR LIGHT ATTACHED TO CAMERA
-      const light = new THREE.PointLight( 0xffffff, 1 );
+      if (this.light_setting == 0) {
+        this.light = new THREE.PointLight( 0xffffff, 1 );
+        this.light.position.set(25, 15, 25);
 
-      this.camera.add(light );
+        this.uniforms['lPosition'] = {
+          t: 'vec3',
+          value: this.light.position
+        };
+
+        this.uniforms['lIntensity'] = {
+          t: 'vec3',
+          value: new THREE.Vector3(800, 800, 800)
+        }
+    }
+    else if (this.light_setting == 1) {
+
+      this.light = new THREE.PointLight( 0xffffff, 1 );
+      this.camera.add(this.light );
       this.scene.add(this.camera);
-      this.light = light;
       this.uniforms['lPosition'] = {
         t: 'vec3',
         value: this.camera.position
@@ -187,7 +222,7 @@ class Renderer {
 
       this.uniforms['lIntensity'] = {
         t: 'vec3',
-        value: new THREE.Vector3(r * 100, g * 100, b * 100)
+        value: new THREE.Vector3(85, 85, 85)
       }
       this.updateCamera();
     }
@@ -195,19 +230,19 @@ class Renderer {
 
   initGUI() {
     var gui = new dat.GUI();
-    gui.add(this, "light_setting", { 'Static': 0, 'Camera': 1 });
-    gui.add(this, "geometry", {'Teapot': 0, 'Sphere': 1, "Torus" : 2, "Cylinder": 3});
+    var that = this;
+    gui.add(this, "light_setting", { 'Static': 0, 'Camera': 1 }).onChange( function(value) {
+      that.addLight();
+    });
+    gui.add(this, 'geometry_setting', {'Teapot': 0, 'Sphere': 1, "Torus" : 2, "Cylinder": 3}).onChange( function( value ) {
+					that.addMesh();
+				} );
     gui.add(this, "ambient", 0.0, 1.0);
     gui.add(this, "diffuse", 0.0, 1.0);
     gui.add(this, "specular", 0.0, 1.0);
-    gui.add(this, "update_settings");
+    // Change the name
+    gui.add(this, "texture_setting", {'Lines': 0, "CHANGE_THIS": 1});
   }
-
-  update_settings() {
-    this.setLight();
-    this.initScene();
-  }
-
 
   begin() {
     this.sysLast = 0;
@@ -259,7 +294,7 @@ class Renderer {
     this.material.uniforms.ambient.value = this.ambient;
     this.material.uniforms.specular.value = this.specular;
     this.material.uniforms.diffuse.value = this.diffuse;
-    this.initScene();
+    this.material.uniforms.textures.value = this.textures[this.texture_setting];
     this.renderer.render(this.scene, this.camera);
   }
 
