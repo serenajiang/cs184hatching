@@ -37,7 +37,6 @@ void main() {
   if (dot(fNormal, normalize(cameraPosition - fPosition)) < 0.0) {
     gl_FragColor = vec4(.5, .5, .5 ,1);
   }
-<<<<<<< HEAD
   else if (brightness <= 0.4) {
     float rat = (brightness - .3)/0.1;
     gl_FragColor = (1.-rat)*texture2D(texture5, fUv) + rat*texture2D(texture4, fUv);
@@ -61,33 +60,6 @@ void main() {
   else {
     float rat = (brightness - 0.8)/0.2;
     gl_FragColor = (1.-rat)*texture2D(texture0, fUv) + (rat)*vec4(1.,1.,1.,1.);
-=======
-  else if (percent_bright <= incr) {
-    float rat = (percent_bright - incr)/0.1;
-    gl_FragColor = (1.-rat)*texture2D(texture53, fUv) + rat*texture2D(texture43, fUv);
-  }
-  else if (numLevels >= 2.0 && percent_bright <= 2.0*incr) {
-    float rat = (percent_bright - 0.34)/0.1;
-    gl_FragColor = (1.-rat)*texture2D(texture43, fUv) + (rat)*texture2D(texture33, fUv);
-  }
-  else if (numLevels >= 3.0 && percent_bright <= 3.0*incr) {
-    float rat = (percent_bright - 0.56)/0.1;
-    gl_FragColor = (1.-rat)*texture2D(texture33, fUv) + (rat)*texture2D(texture23, fUv);
-  }
-  else if (numLevels >= 4.0 && percent_bright <= 4.0*incr) {
-    float rat = (percent_bright - 0.73)/0.1;
-    gl_FragColor = (1.-rat)*texture2D(texture23, fUv) + (rat)*texture2D(texture13, fUv);
-  }
-  else if (numLevels >= 5.0 && percent_bright <= 5.0*incr) {
-    float rat = (percent_bright - 0.9)/0.1;
-    gl_FragColor = (1.-rat)*texture2D(texture13, fUv) + (rat)*texture2D(texture03, fUv);
-  }
-  else {
-    if (numLevels >= 6.0) {
-      float rat = (percent_bright - 1.0)/0.1;
-      gl_FragColor = (1.-rat)*texture2D(texture03, fUv) + (rat)*vec4(1.,1.,1.,1.);
-    }
->>>>>>> 8798496d032adf852ef8c5cd30e7d1044cf2c5e2
   }
 }
 

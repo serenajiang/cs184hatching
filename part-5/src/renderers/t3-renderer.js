@@ -1,10 +1,8 @@
-// import THREE from '../lib/three';
 import Renderer from '../lib/renderer';
 import vert from '../shaders/task-3/texture.vert';
 import frag from '../shaders/task-3/mipmaptest.frag';
 import vertOutline from '../shaders/task-3/textureOutline.vert';
 import fragOutline from '../shaders/task-3/textureOutline.frag';
-
 import texture00 from "../textures/pencil/0.png";
 import texture01 from "../textures/pencil/0.png";
 import texture02 from "../textures/pencil/0.png";
@@ -61,16 +59,32 @@ import texture56 from "../textures/pencil/56.png";
 import texture57 from "../textures/pencil/57.png";
 import texture58 from "../textures/pencil/58.png";
 
+import crosstexture00 from "../textures/test/ayy00.bmp";
+import crosstexture01 from "../textures/test/ayy01.bmp";
+import crosstexture02 from "../textures/test/ayy02.bmp";
+import crosstexture03 from "../textures/test/ayy03.bmp";
+import crosstexture10 from "../textures/test/ayy00.bmp";
+import crosstexture11 from "../textures/test/ayy11.bmp";
+import crosstexture12 from "../textures/test/ayy12.bmp";
+import crosstexture13 from "../textures/test/ayy13.bmp";
+import crosstexture30 from "../textures/test/ayy30.bmp";
+import crosstexture31 from "../textures/test/ayy31.bmp";
+import crosstexture32 from "../textures/test/ayy32.bmp";
+import crosstexture33 from "../textures/test/ayy33.bmp";
+import crosstexture40 from "../textures/test/ayy40.bmp";
+import crosstexture41 from "../textures/test/ayy41.bmp";
+import crosstexture42 from "../textures/test/ayy42.bmp";
+import crosstexture43 from "../textures/test/ayy43.bmp";
 
 var THREE = require('three')
 
 export default class extends Renderer {
 
   initMaterials() {
-    if (!this.checkShader(vert, frag)) {
-      this.setErrorScene();
-      return;
-    }
+    // if (!this.checkShader(vert, frag)) {
+    //   this.setErrorScene();
+    //   return;
+    // }
 
     var tex00 = new THREE.TextureLoader().load(texture00);
     var tex01 = new THREE.TextureLoader().load(texture01);
@@ -127,6 +141,25 @@ export default class extends Renderer {
     var tex57 = new THREE.TextureLoader().load(texture57);
     var tex58 = new THREE.TextureLoader().load(texture58);
 
+    var crosstex00 = new THREE.TextureLoader().load(crosstexture00);
+    var crosstex01 = new THREE.TextureLoader().load(crosstexture01);
+    var crosstex02 = new THREE.TextureLoader().load(crosstexture02);
+    var crosstex03 = new THREE.TextureLoader().load(crosstexture03);
+    var crosstex10 = new THREE.TextureLoader().load(crosstexture10);
+    var crosstex11 = new THREE.TextureLoader().load(crosstexture11);
+    var crosstex12 = new THREE.TextureLoader().load(crosstexture12);
+    var crosstex13 = new THREE.TextureLoader().load(crosstexture13);
+    var crosstex30 = new THREE.TextureLoader().load(crosstexture30);
+    var crosstex31 = new THREE.TextureLoader().load(crosstexture31);
+    var crosstex32 = new THREE.TextureLoader().load(crosstexture32);
+    var crosstex33 = new THREE.TextureLoader().load(crosstexture33);
+    var crosstex40 = new THREE.TextureLoader().load(crosstexture40);
+    var crosstex41 = new THREE.TextureLoader().load(crosstexture41);
+    var crosstex42 = new THREE.TextureLoader().load(crosstexture42);
+    var crosstex43 = new THREE.TextureLoader().load(crosstexture43);
+
+
+
     tex00.minFilter = THREE.LinearFilter;
     tex01.minFilter = THREE.LinearFilter;
     tex02.minFilter = THREE.LinearFilter;
@@ -181,12 +214,123 @@ export default class extends Renderer {
     tex56.minFilter = THREE.LinearFilter;
     tex57.minFilter = THREE.LinearFilter;
     tex58.minFilter = THREE.LinearFilter;
+
+    tex00.wrapS = THREE.RepeatWrapping;
+    tex01.wrapS = THREE.RepeatWrapping;
+    tex02.wrapS = THREE.RepeatWrapping;
+    tex03.wrapS = THREE.RepeatWrapping;
+    tex04.wrapS = THREE.RepeatWrapping;
+    tex05.wrapS = THREE.RepeatWrapping;
+    tex06.wrapS = THREE.RepeatWrapping;
+    tex07.wrapS = THREE.RepeatWrapping;
+    tex08.wrapS = THREE.RepeatWrapping;
+    tex10.wrapS = THREE.RepeatWrapping;
+    tex11.wrapS = THREE.RepeatWrapping;
+    tex12.wrapS = THREE.RepeatWrapping;
+    tex13.wrapS = THREE.RepeatWrapping;
+    tex14.wrapS = THREE.RepeatWrapping;
+    tex15.wrapS = THREE.RepeatWrapping;
+    tex16.wrapS = THREE.RepeatWrapping;
+    tex17.wrapS = THREE.RepeatWrapping;
+    tex18.wrapS = THREE.RepeatWrapping;
+    tex20.wrapS = THREE.RepeatWrapping;
+    tex21.wrapS = THREE.RepeatWrapping;
+    tex22.wrapS = THREE.RepeatWrapping;
+    tex23.wrapS = THREE.RepeatWrapping;
+    tex24.wrapS = THREE.RepeatWrapping;
+    tex25.wrapS = THREE.RepeatWrapping;
+    tex26.wrapS = THREE.RepeatWrapping;
+    tex27.wrapS = THREE.RepeatWrapping;
+    tex28.wrapS = THREE.RepeatWrapping;
+    tex30.wrapS = THREE.RepeatWrapping;
+    tex31.wrapS = THREE.RepeatWrapping;
+    tex32.wrapS = THREE.RepeatWrapping;
+    tex33.wrapS = THREE.RepeatWrapping;
+    tex34.wrapS = THREE.RepeatWrapping;
+    tex35.wrapS = THREE.RepeatWrapping;
+    tex36.wrapS = THREE.RepeatWrapping;
+    tex37.wrapS = THREE.RepeatWrapping;
+    tex38.wrapS = THREE.RepeatWrapping;
+    tex40.wrapS = THREE.RepeatWrapping;
+    tex41.wrapS = THREE.RepeatWrapping;
+    tex42.wrapS = THREE.RepeatWrapping;
+    tex43.wrapS = THREE.RepeatWrapping;
+    tex44.wrapS = THREE.RepeatWrapping;
+    tex45.wrapS = THREE.RepeatWrapping;
+    tex46.wrapS = THREE.RepeatWrapping;
+    tex47.wrapS = THREE.RepeatWrapping;
+    tex48.wrapS = THREE.RepeatWrapping;
+    tex50.wrapS = THREE.RepeatWrapping;
+    tex51.wrapS = THREE.RepeatWrapping;
+    tex52.wrapS = THREE.RepeatWrapping;
+    tex53.wrapS = THREE.RepeatWrapping;
+    tex54.wrapS = THREE.RepeatWrapping;
+    tex55.wrapS = THREE.RepeatWrapping;
+    tex56.wrapS = THREE.RepeatWrapping;
+    tex57.wrapS = THREE.RepeatWrapping;
+    tex58.wrapS = THREE.RepeatWrapping;
+
+    crosstex00.minFilter = THREE.LinearFilter;
+    crosstex01.minFilter = THREE.LinearFilter;
+    crosstex02.minFilter = THREE.LinearFilter;
+    crosstex03.minFilter = THREE.LinearFilter;
+    crosstex10.minFilter = THREE.LinearFilter;
+    crosstex11.minFilter = THREE.LinearFilter;
+    crosstex12.minFilter = THREE.LinearFilter;
+    crosstex13.minFilter = THREE.LinearFilter;
+    crosstex30.minFilter = THREE.LinearFilter;
+    crosstex31.minFilter = THREE.LinearFilter;
+    crosstex32.minFilter = THREE.LinearFilter;
+    crosstex33.minFilter = THREE.LinearFilter;
+    crosstex40.minFilter = THREE.LinearFilter;
+    crosstex41.minFilter = THREE.LinearFilter;
+    crosstex42.minFilter = THREE.LinearFilter;
+    crosstex43.minFilter = THREE.LinearFilter;
+
+    crosstex00.wrapS = THREE.RepeatWrapping;
+    crosstex01.wrapS = THREE.RepeatWrapping;
+    crosstex02.wrapS = THREE.RepeatWrapping;
+    crosstex03.wrapS = THREE.RepeatWrapping;
+    crosstex10.wrapS = THREE.RepeatWrapping;
+    crosstex11.wrapS = THREE.RepeatWrapping;
+    crosstex12.wrapS = THREE.RepeatWrapping;
+    crosstex13.wrapS = THREE.RepeatWrapping;
+    crosstex30.wrapS = THREE.RepeatWrapping;
+    crosstex31.wrapS = THREE.RepeatWrapping;
+    crosstex32.wrapS = THREE.RepeatWrapping;
+    crosstex33.wrapS = THREE.RepeatWrapping;
+    crosstex40.wrapS = THREE.RepeatWrapping;
+    crosstex41.wrapS = THREE.RepeatWrapping;
+    crosstex42.wrapS = THREE.RepeatWrapping;
+    crosstex43.wrapS = THREE.RepeatWrapping;
+
+    crosstex00.wrapT = THREE.RepeatWrapping;
+    crosstex01.wrapT = THREE.RepeatWrapping;
+    crosstex02.wrapT = THREE.RepeatWrapping;
+    crosstex03.wrapT = THREE.RepeatWrapping;
+    crosstex10.wrapT = THREE.RepeatWrapping;
+    crosstex11.wrapT = THREE.RepeatWrapping;
+    crosstex12.wrapT = THREE.RepeatWrapping;
+    crosstex13.wrapT = THREE.RepeatWrapping;
+    crosstex30.wrapT = THREE.RepeatWrapping;
+    crosstex31.wrapT = THREE.RepeatWrapping;
+    crosstex32.wrapT = THREE.RepeatWrapping;
+    crosstex33.wrapT = THREE.RepeatWrapping;
+    crosstex40.wrapT = THREE.RepeatWrapping;
+    crosstex41.wrapT = THREE.RepeatWrapping;
+    crosstex42.wrapT = THREE.RepeatWrapping;
+    crosstex43.wrapT = THREE.RepeatWrapping;
     // Add a new 16x16 array of textures for more textures
     this.textures = [
+                    [crosstex00,crosstex01,crosstex02,crosstex03,
+                    crosstex10,crosstex11,crosstex12,crosstex13,
+                    crosstex30,crosstex31,crosstex32,crosstex33,
+                    crosstex40,crosstex41,crosstex42,crosstex43],
+
                     [tex03,tex05,tex06,tex08,
                     tex13,tex15,tex16,tex18,
-                    tex43,tex45,tex46,tex48,
-                    tex53,tex55,tex56,tex58],
+                    tex32,tex35,tex36,tex37,
+                    tex43,tex45,tex46,tex48],
                   ];
     this.uniforms['textures'] = {
       value: this.textures[0]

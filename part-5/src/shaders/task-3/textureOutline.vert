@@ -16,7 +16,7 @@ void main() {
   vec3 wPosition = (modelMatrix * vec4(position, 1.0)).xyz;
   vec3 wNormal = (modelMatrix * vec4(normal, 0.0)).xyz;
   if (dot(wNormal, normalize(cameraPosition - wPosition)) < 0.0){
-    wPosition += 0.075*wNormal;
+    wPosition += 0.05*wNormal;
   }
   fPosition = wPosition;
   fNormal = wNormal;

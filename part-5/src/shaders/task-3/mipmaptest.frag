@@ -11,6 +11,8 @@ uniform vec3 cameraPosition;
 uniform float ambient;
 uniform float specular;
 uniform float diffuse;
+uniform float repeat;
+
 varying vec3 fPosition;
 varying vec3 fNormal;
 
@@ -40,16 +42,16 @@ void main() {
   gl_FragColor = vec4(0.,0.,0.,0.);
   float tonew = tone - float(int(tone));
   float mipw = mipmap - float(int(mipmap));
-
+  vec2 new_uv = repeat*fUv;
   for (int i = 0; i<16; i++) {
     if (i==mipmaplevel + tonelevel) {
-      gl_FragColor = gl_FragColor + (1.-tonew)*(1.-mipw)*texture2D(textures[i], fUv);
+      gl_FragColor = gl_FragColor + (1.-tonew)*(1.-mipw)*texture2D(textures[i], new_uv);
     } else if (i == mipmaplevel + 1 + tonelevel) {
-      gl_FragColor =  gl_FragColor + (1.-tonew)*(mipw)*texture2D(textures[i], fUv);
+      gl_FragColor =  gl_FragColor + (1.-tonew)*(mipw)*texture2D(textures[i], new_uv);
     } else if (i == mipmaplevel + tonelevel + 4) {
-      gl_FragColor = gl_FragColor + (tonew)*(1.-mipw)*texture2D(textures[i], fUv);
+      gl_FragColor = gl_FragColor + (tonew)*(1.-mipw)*texture2D(textures[i], new_uv);
     } else if (i == mipmaplevel + tonelevel + 5) {
-      gl_FragColor = gl_FragColor + (tonew)*(mipw)*texture2D(textures[i], fUv);
+      gl_FragColor = gl_FragColor + (tonew)*(mipw)*texture2D(textures[i], new_uv);
     }
   }
 }
