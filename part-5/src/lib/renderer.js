@@ -131,6 +131,7 @@ class Renderer {
     this.ambient = .3;
     this.diffuse = .75;
     this.specular = 0.05;
+    this.zoom = 10;
 
     this.uniforms = {
       time: { type: 'f', value: 0 },
@@ -231,6 +232,16 @@ class Renderer {
     }
   }
 
+  zoomCam() {
+      this.cameraState = {
+      theta: 1.8,
+      phi: 0,
+      distance: this.zoom,
+      };
+      this.camera.position.set( 10, 10, 10 );
+      this.updateCamera();
+  }
+
   initGUI() {
     var gui = new dat.GUI();
     var that = this;
@@ -243,6 +254,9 @@ class Renderer {
     gui.add(this, "ambient", 0.0, 1.0);
     gui.add(this, "diffuse", 0.0, 1.0);
     gui.add(this, "specular", 0.0, 1.0);
+    gui.add(this, "zoom", 5.0, 30.0).onChange( function(value) {
+      that.zoomCam();
+    });
     // Change the name
     gui.add(this, "texture_setting", {'Lines': 0, "Lines 2": 1});
   }
