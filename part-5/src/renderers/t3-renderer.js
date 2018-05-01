@@ -64,13 +64,11 @@ import texture58 from "../textures/pencil/58.png";
 var THREE = require('three')
 
 export default class extends Renderer {
-  initScene() {
+  initMaterials() {
     if (!this.checkShader(vert, frag)) {
       this.setErrorScene();
       return;
     }
-    this.scene.children = []; // remove all geometry
-    this.setLight(this.light_setting);
 
     var tex00 = new THREE.TextureLoader().load(texture00);
     var tex01 = new THREE.TextureLoader().load(texture01);
@@ -181,48 +179,18 @@ export default class extends Renderer {
     tex56.minFilter = THREE.LinearFilter;
     tex57.minFilter = THREE.LinearFilter;
     tex58.minFilter = THREE.LinearFilter;
-
-    var textures = [tex03,tex05,tex06,tex08,
+    // Add a new 16x16 array of textures for more textures
+    this.textures = [
+                    [tex03,tex05,tex06,tex08,
                     tex13,tex15,tex16,tex18,
                     tex43,tex45,tex46,tex48,
-                    tex53,tex55,tex56,tex58];
+                    tex53,tex55,tex56,tex58],
+                  ];
     this.uniforms['textures'] = {
-      value: textures
+      value: this.textures[0]
     }
-    // Outline
-
-    if (this.geometry == 0) {
-      var outlineGeometry = new THREE.TeapotBufferGeometry(4, 32, 32);
-      var geometry = new THREE.TeapotBufferGeometry(4, 32, 32);
-      this.uniforms['repeat'] = {type: "vec2", value: new THREE.Vector2(2,2)};
-    }
-    else if (this.geometry == 1) {
-      var outlineGeometry = new THREE.SphereBufferGeometry(5, 64, 64);
-      var geometry = new THREE.SphereBufferGeometry(5, 32, 32);
-      this.uniforms['repeat'] = {type: "vec2", value: new THREE.Vector2(10,10)};
-    }
-
-    else if (this.geometry == 2) {
-      var outlineGeometry = new THREE.TorusBufferGeometry(5, 2, 50, 100);
-      var geometry = new THREE.TorusBufferGeometry(5, 2, 50, 100);
-      this.uniforms['repeat'] = {type: "vec2", value: new THREE.Vector2(10,10)};
-    }
-    else if (this.geometry == 3) {
-      var outlineGeometry = new THREE.CylinderBufferGeometry(3, 3, 8, 64, 100);
-      var geometry = new THREE.CylinderBufferGeometry(3, 3, 8, 64, 100);
-      this.uniforms['repeat'] = {type: "vec2", value: new THREE.Vector2(10,10)};
-    }
-
-    // Outline
-    const outlineMaterial = this.createShaderMaterial(vertOutline, fragOutline);
-    const outline = new THREE.Mesh(outlineGeometry, outlineMaterial);
-    this.scene.add(outline);
-
-    const material = this.createShaderMaterial(vert, frag);
-    this.material = material;
-    const model = new THREE.Mesh(geometry, material);
-    this.scene.add(model);
-    this.scene.background = new THREE.Color( 0xffffff );
+    this.outline_material = this.createShaderMaterial(vertOutline, fragOutline);
+    this.material = this.createShaderMaterial(vert, frag);
   }
   update(dt) {
     return;
