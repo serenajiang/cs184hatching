@@ -1,68 +1,4 @@
-// import THREE from '../lib/three';
-import Renderer from '../lib/renderer';
-import vert from '../shaders/task-3/texture.vert';
-import frag from '../shaders/task-3/mipmaptest.frag';
-import vertOutline from '../shaders/task-3/textureOutline.vert';
-import fragOutline from '../shaders/task-3/textureOutline.frag';
 
-import texture00 from "../textures/pencil/0.png";
-import texture01 from "../textures/pencil/0.png";
-import texture02 from "../textures/pencil/0.png";
-import texture03 from "../textures/pencil/0.png";
-import texture04 from "../textures/pencil/0.png";
-import texture05 from "../textures/pencil/0.png";
-import texture06 from "../textures/pencil/0.png";
-import texture07 from "../textures/pencil/0.png";
-import texture08 from "../textures/pencil/0.png";
-import texture09 from "../textures/pencil/0.png";
-import texture10 from "../textures/pencil/10.png";
-import texture11 from "../textures/pencil/11.png";
-import texture12 from "../textures/pencil/12.png";
-import texture13 from "../textures/pencil/13.png";
-import texture14 from "../textures/pencil/14.png";
-import texture15 from "../textures/pencil/15.png";
-import texture16 from "../textures/pencil/16.png";
-import texture17 from "../textures/pencil/17.png";
-import texture18 from "../textures/pencil/18.png";
-import texture20 from "../textures/pencil/20.png";
-import texture21 from "../textures/pencil/21.png";
-import texture22 from "../textures/pencil/22.png";
-import texture23 from "../textures/pencil/23.png";
-import texture24 from "../textures/pencil/24.png";
-import texture25 from "../textures/pencil/25.png";
-import texture26 from "../textures/pencil/26.png";
-import texture27 from "../textures/pencil/27.png";
-import texture28 from "../textures/pencil/28.png";
-import texture30 from "../textures/pencil/30.png";
-import texture31 from "../textures/pencil/31.png";
-import texture32 from "../textures/pencil/32.png";
-import texture33 from "../textures/pencil/33.png";
-import texture34 from "../textures/pencil/34.png";
-import texture35 from "../textures/pencil/35.png";
-import texture36 from "../textures/pencil/36.png";
-import texture37 from "../textures/pencil/37.png";
-import texture38 from "../textures/pencil/38.png";
-import texture40 from "../textures/pencil/40.png";
-import texture41 from "../textures/pencil/41.png";
-import texture42 from "../textures/pencil/42.png";
-import texture43 from "../textures/pencil/43.png";
-import texture44 from "../textures/pencil/44.png";
-import texture45 from "../textures/pencil/45.png";
-import texture46 from "../textures/pencil/46.png";
-import texture47 from "../textures/pencil/47.png";
-import texture48 from "../textures/pencil/48.png";
-import texture50 from "../textures/pencil/50.png";
-import texture51 from "../textures/pencil/51.png";
-import texture52 from "../textures/pencil/52.png";
-import texture53 from "../textures/pencil/53.png";
-import texture54 from "../textures/pencil/54.png";
-import texture55 from "../textures/pencil/55.png";
-import texture56 from "../textures/pencil/56.png";
-import texture57 from "../textures/pencil/57.png";
-import texture58 from "../textures/pencil/58.png";
-
-
-var THREE = require('three')
 
 export default class extends Renderer {
 
@@ -70,7 +6,7 @@ export default class extends Renderer {
     if (!this.checkShader(vert, frag)) {
       this.setErrorScene();
       return;
-    }
+  }
 
     var tex00 = new THREE.TextureLoader().load(texture00);
     var tex01 = new THREE.TextureLoader().load(texture01);
