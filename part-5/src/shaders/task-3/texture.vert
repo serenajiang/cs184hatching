@@ -5,7 +5,6 @@ attribute vec2 uv;
 uniform mat4 modelMatrix;
 uniform mat4 modelViewMatrix;
 uniform mat4 projectionMatrix;
-uniform vec2 repeat;
 uniform vec3 cameraPosition;
 varying vec2 fUv;
 varying vec3 fPosition;

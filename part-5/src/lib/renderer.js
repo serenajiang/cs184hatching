@@ -116,6 +116,7 @@ class Renderer {
       new THREE.TorusBufferGeometry(5, 2, 50, 100),
       new THREE.CylinderBufferGeometry(3, 3, 8, 64, 100),
     ]
+    this.repeats = [2, 10, 10, 5];
     this.focussed = true;
     this.stats.setMode(0);
     this.light_setting = 0;
@@ -136,6 +137,7 @@ class Renderer {
       ambient: {type: "f", value: .3},
       diffuse: {type: "f", value: .75},
       specular: {type: "f", value: 0.05},
+      repeat: {type: "f", value: 2.},
     };
 
     this.scene = new THREE.Scene();
@@ -177,7 +179,7 @@ class Renderer {
 
     this.geometry = this.geometries[this.geometry_setting];
     this.outline_geometry = this.outlines[this.geometry_setting];
-
+    this.repeat = this.repeats[this.geometry_setting];
     this.mesh = new THREE.Mesh(this.geometry, this.material);
     this.outline_mesh = new THREE.Mesh(this.outline_geometry, this.outline_material);
 
@@ -293,6 +295,7 @@ class Renderer {
 
   render() {
     if (this.material.uniforms.ambient != null) {
+    this.material.uniforms.repeat.value = this.repeat;
     this.material.uniforms.ambient.value = this.ambient;
     this.material.uniforms.specular.value = this.specular;
     this.material.uniforms.diffuse.value = this.diffuse;

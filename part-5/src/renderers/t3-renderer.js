@@ -1,7 +1,6 @@
-RepeatWrapping// import THREE from '../lib/three';
 import Renderer from '../lib/renderer';
 import vert from '../shaders/task-3/texture.vert';
-import frag from '../shaders/task-3/texture.frag';
+import frag from '../shaders/task-3/mipmaptest.frag';
 import vertOutline from '../shaders/task-3/textureOutline.vert';
 import fragOutline from '../shaders/task-3/textureOutline.frag';
 import texture00 from "../textures/pencil/0.png";
@@ -287,22 +286,39 @@ export default class extends Renderer {
     crosstex42.minFilter = THREE.LinearFilter;
     crosstex43.minFilter = THREE.LinearFilter;
 
-    // crosstex00.wrapS = THREE.LinearFilter;
-    // crosstex01.wrapS = THREE.LinearFilter;
-    // crosstex02.wrapS = THREE.LinearFilter;
-    // crosstex03.wrapS = THREE.LinearFilter;
-    // crosstex10.wrapS = THREE.LinearFilter;
-    // crosstex11.wrapS = THREE.LinearFilter;
-    // crosstex12.wrapS = THREE.LinearFilter;
-    // crosstex13.wrapS = THREE.LinearFilter;
-    // crosstex30.wrapS = THREE.LinearFilter;
-    // crosstex31.wrapS = THREE.LinearFilter;
-    // crosstex32.wrapS = THREE.LinearFilter;
-    // crosstex33.wrapS = THREE.LinearFilter;
-    // crosstex40.wrapS = THREE.LinearFilter;
-    // crosstex41.wrapS = THREE.LinearFilter;
-    // crosstex42.wrapS = THREE.LinearFilter;
-    // crosstex43.wrapS = THREE.LinearFilter;
+    crosstex00.wrapS = THREE.RepeatWrapping;
+    crosstex01.wrapS = THREE.RepeatWrapping;
+    crosstex02.wrapS = THREE.RepeatWrapping;
+    crosstex03.wrapS = THREE.RepeatWrapping;
+    crosstex10.wrapS = THREE.RepeatWrapping;
+    crosstex11.wrapS = THREE.RepeatWrapping;
+    crosstex12.wrapS = THREE.RepeatWrapping;
+    crosstex13.wrapS = THREE.RepeatWrapping;
+    crosstex30.wrapS = THREE.RepeatWrapping;
+    crosstex31.wrapS = THREE.RepeatWrapping;
+    crosstex32.wrapS = THREE.RepeatWrapping;
+    crosstex33.wrapS = THREE.RepeatWrapping;
+    crosstex40.wrapS = THREE.RepeatWrapping;
+    crosstex41.wrapS = THREE.RepeatWrapping;
+    crosstex42.wrapS = THREE.RepeatWrapping;
+    crosstex43.wrapS = THREE.RepeatWrapping;
+
+    crosstex00.wrapT = THREE.RepeatWrapping;
+    crosstex01.wrapT = THREE.RepeatWrapping;
+    crosstex02.wrapT = THREE.RepeatWrapping;
+    crosstex03.wrapT = THREE.RepeatWrapping;
+    crosstex10.wrapT = THREE.RepeatWrapping;
+    crosstex11.wrapT = THREE.RepeatWrapping;
+    crosstex12.wrapT = THREE.RepeatWrapping;
+    crosstex13.wrapT = THREE.RepeatWrapping;
+    crosstex30.wrapT = THREE.RepeatWrapping;
+    crosstex31.wrapT = THREE.RepeatWrapping;
+    crosstex32.wrapT = THREE.RepeatWrapping;
+    crosstex33.wrapT = THREE.RepeatWrapping;
+    crosstex40.wrapT = THREE.RepeatWrapping;
+    crosstex41.wrapT = THREE.RepeatWrapping;
+    crosstex42.wrapT = THREE.RepeatWrapping;
+    crosstex43.wrapT = THREE.RepeatWrapping;
     // Add a new 16x16 array of textures for more textures
     this.textures = [
                     [crosstex00,crosstex01,crosstex02,crosstex03,
