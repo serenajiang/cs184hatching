@@ -61,6 +61,13 @@ import texture56 from "../textures/pencil/56.png";
 import texture57 from "../textures/pencil/57.png";
 import texture58 from "../textures/pencil/58.png";
 
+import texture56 from '../textures/drawn/lvl5.png';
+import texture46 from '../textures/drawn/lvl4.png';
+import texture36 from '../textures/drawn/lvl3.png';
+import texture26 from '../textures/drawn/lvl2.png';
+import texture16 from '../textures/drawn/lvl1.png';
+import texture06 from '../textures/drawn/lvl0.png';
+
 var THREE = require('three')
 
 export default class extends Renderer {
