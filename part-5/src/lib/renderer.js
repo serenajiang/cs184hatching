@@ -116,7 +116,10 @@ class Renderer {
       new THREE.TorusBufferGeometry(5, 2, 50, 100),
       new THREE.CylinderBufferGeometry(3, 3, 8, 64, 100),
     ]
-    this.repeats = [2, 10, 10, 5];
+    this.repeats = [
+                    [2, 10, 10, 5],
+                    [1.5, 3, 3, 3],
+                  ];
     this.focussed = true;
     this.stats.setMode(0);
     this.light_setting = 0;
@@ -179,7 +182,6 @@ class Renderer {
 
     this.geometry = this.geometries[this.geometry_setting];
     this.outline_geometry = this.outlines[this.geometry_setting];
-    this.repeat = this.repeats[this.geometry_setting];
     this.mesh = new THREE.Mesh(this.geometry, this.material);
     this.outline_mesh = new THREE.Mesh(this.outline_geometry, this.outline_material);
 
@@ -300,6 +302,7 @@ class Renderer {
     this.material.uniforms.specular.value = this.specular;
     this.material.uniforms.diffuse.value = this.diffuse;
     this.material.uniforms.textures.value = this.textures[this.texture_setting];
+    this.material.uniforms.repeat.value = this.repeats[this.texture_setting][this.geometry_setting];
   }
     this.renderer.render(this.scene, this.camera);
   }

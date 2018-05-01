@@ -76,6 +76,7 @@ import crosstexture41 from "../textures/test/ayy41.bmp";
 import crosstexture42 from "../textures/test/ayy42.bmp";
 import crosstexture43 from "../textures/test/ayy43.bmp";
 
+
 var THREE = require('three')
 
 export default class extends Renderer {
@@ -269,6 +270,61 @@ export default class extends Renderer {
     tex56.wrapS = THREE.RepeatWrapping;
     tex57.wrapS = THREE.RepeatWrapping;
     tex58.wrapS = THREE.RepeatWrapping;
+
+    tex00.wrapT = THREE.RepeatWrapping;
+    tex01.wrapT = THREE.RepeatWrapping;
+    tex02.wrapT = THREE.RepeatWrapping;
+    tex03.wrapT = THREE.RepeatWrapping;
+    tex04.wrapT = THREE.RepeatWrapping;
+    tex05.wrapT = THREE.RepeatWrapping;
+    tex06.wrapT = THREE.RepeatWrapping;
+    tex07.wrapT = THREE.RepeatWrapping;
+    tex08.wrapT = THREE.RepeatWrapping;
+    tex10.wrapT = THREE.RepeatWrapping;
+    tex11.wrapT = THREE.RepeatWrapping;
+    tex12.wrapT = THREE.RepeatWrapping;
+    tex13.wrapT = THREE.RepeatWrapping;
+    tex14.wrapT = THREE.RepeatWrapping;
+    tex15.wrapT = THREE.RepeatWrapping;
+    tex16.wrapT = THREE.RepeatWrapping;
+    tex17.wrapT = THREE.RepeatWrapping;
+    tex18.wrapT = THREE.RepeatWrapping;
+    tex20.wrapT = THREE.RepeatWrapping;
+    tex21.wrapT = THREE.RepeatWrapping;
+    tex22.wrapT = THREE.RepeatWrapping;
+    tex23.wrapT = THREE.RepeatWrapping;
+    tex24.wrapT = THREE.RepeatWrapping;
+    tex25.wrapT = THREE.RepeatWrapping;
+    tex26.wrapT = THREE.RepeatWrapping;
+    tex27.wrapT = THREE.RepeatWrapping;
+    tex28.wrapT = THREE.RepeatWrapping;
+    tex30.wrapT = THREE.RepeatWrapping;
+    tex31.wrapT = THREE.RepeatWrapping;
+    tex32.wrapT = THREE.RepeatWrapping;
+    tex33.wrapT = THREE.RepeatWrapping;
+    tex34.wrapT = THREE.RepeatWrapping;
+    tex35.wrapT = THREE.RepeatWrapping;
+    tex36.wrapT = THREE.RepeatWrapping;
+    tex37.wrapT = THREE.RepeatWrapping;
+    tex38.wrapT = THREE.RepeatWrapping;
+    tex40.wrapT = THREE.RepeatWrapping;
+    tex41.wrapT = THREE.RepeatWrapping;
+    tex42.wrapT = THREE.RepeatWrapping;
+    tex43.wrapT = THREE.RepeatWrapping;
+    tex44.wrapT = THREE.RepeatWrapping;
+    tex45.wrapT = THREE.RepeatWrapping;
+    tex46.wrapT = THREE.RepeatWrapping;
+    tex47.wrapT = THREE.RepeatWrapping;
+    tex48.wrapT = THREE.RepeatWrapping;
+    tex50.wrapT = THREE.RepeatWrapping;
+    tex51.wrapT = THREE.RepeatWrapping;
+    tex52.wrapT = THREE.RepeatWrapping;
+    tex53.wrapT = THREE.RepeatWrapping;
+    tex54.wrapT = THREE.RepeatWrapping;
+    tex55.wrapT = THREE.RepeatWrapping;
+    tex56.wrapT = THREE.RepeatWrapping;
+    tex57.wrapT = THREE.RepeatWrapping;
+    tex58.wrapT = THREE.RepeatWrapping;
 
     crosstex00.minFilter = THREE.LinearFilter;
     crosstex01.minFilter = THREE.LinearFilter;
