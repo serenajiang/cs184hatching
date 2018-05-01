@@ -6,9 +6,5 @@ import T4_2Renderer from './t4-2-renderer';
 import T5Renderer from './t5-renderer';
 
 export {
-  T1Renderer,
-  T2Renderer,
-  T3Renderer,
-  T4_1Renderer,
-  T4_2Renderer,
+  T3Renderer
 }

@@ -130,6 +130,11 @@ class Renderer {
     this.diffuse = .75;
     this.specular = 0.05;
 
+    this.addLight();
+    this.addMesh();
+    this.initGUI();
+    this.initMaterials();
+
     this.uniforms = {
       time: { type: 'f', value: 0 },
       ambient: {type: "f", value: this.ambient},
@@ -159,10 +164,7 @@ class Renderer {
       lastMouse: null
     };
 
-    this.addLight();
-    this.initMaterials();
-    this.addMesh();
-    this.initGUI();
+    
     this.attachListeners();
   }
 
