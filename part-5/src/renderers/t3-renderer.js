@@ -1,10 +1,9 @@
-// import THREE from '../lib/three';
+RepeatWrapping// import THREE from '../lib/three';
 import Renderer from '../lib/renderer';
 import vert from '../shaders/task-3/texture.vert';
-import frag from '../shaders/task-3/mipmaptest.frag';
+import frag from '../shaders/task-3/texture.frag';
 import vertOutline from '../shaders/task-3/textureOutline.vert';
 import fragOutline from '../shaders/task-3/textureOutline.frag';
-
 import texture00 from "../textures/pencil/0.png";
 import texture01 from "../textures/pencil/0.png";
 import texture02 from "../textures/pencil/0.png";
@@ -82,10 +81,10 @@ var THREE = require('three')
 
 export default class extends Renderer {
   initMaterials() {
-    if (!this.checkShader(vert, frag)) {
-      this.setErrorScene();
-      return;
-    }
+    // if (!this.checkShader(vert, frag)) {
+    //   this.setErrorScene();
+    //   return;
+    // }
 
     var tex00 = new THREE.TextureLoader().load(texture00);
     var tex01 = new THREE.TextureLoader().load(texture01);
@@ -215,13 +214,102 @@ export default class extends Renderer {
     tex56.minFilter = THREE.LinearFilter;
     tex57.minFilter = THREE.LinearFilter;
     tex58.minFilter = THREE.LinearFilter;
+
+    tex00.wrapS = THREE.RepeatWrapping;
+    tex01.wrapS = THREE.RepeatWrapping;
+    tex02.wrapS = THREE.RepeatWrapping;
+    tex03.wrapS = THREE.RepeatWrapping;
+    tex04.wrapS = THREE.RepeatWrapping;
+    tex05.wrapS = THREE.RepeatWrapping;
+    tex06.wrapS = THREE.RepeatWrapping;
+    tex07.wrapS = THREE.RepeatWrapping;
+    tex08.wrapS = THREE.RepeatWrapping;
+    tex10.wrapS = THREE.RepeatWrapping;
+    tex11.wrapS = THREE.RepeatWrapping;
+    tex12.wrapS = THREE.RepeatWrapping;
+    tex13.wrapS = THREE.RepeatWrapping;
+    tex14.wrapS = THREE.RepeatWrapping;
+    tex15.wrapS = THREE.RepeatWrapping;
+    tex16.wrapS = THREE.RepeatWrapping;
+    tex17.wrapS = THREE.RepeatWrapping;
+    tex18.wrapS = THREE.RepeatWrapping;
+    tex20.wrapS = THREE.RepeatWrapping;
+    tex21.wrapS = THREE.RepeatWrapping;
+    tex22.wrapS = THREE.RepeatWrapping;
+    tex23.wrapS = THREE.RepeatWrapping;
+    tex24.wrapS = THREE.RepeatWrapping;
+    tex25.wrapS = THREE.RepeatWrapping;
+    tex26.wrapS = THREE.RepeatWrapping;
+    tex27.wrapS = THREE.RepeatWrapping;
+    tex28.wrapS = THREE.RepeatWrapping;
+    tex30.wrapS = THREE.RepeatWrapping;
+    tex31.wrapS = THREE.RepeatWrapping;
+    tex32.wrapS = THREE.RepeatWrapping;
+    tex33.wrapS = THREE.RepeatWrapping;
+    tex34.wrapS = THREE.RepeatWrapping;
+    tex35.wrapS = THREE.RepeatWrapping;
+    tex36.wrapS = THREE.RepeatWrapping;
+    tex37.wrapS = THREE.RepeatWrapping;
+    tex38.wrapS = THREE.RepeatWrapping;
+    tex40.wrapS = THREE.RepeatWrapping;
+    tex41.wrapS = THREE.RepeatWrapping;
+    tex42.wrapS = THREE.RepeatWrapping;
+    tex43.wrapS = THREE.RepeatWrapping;
+    tex44.wrapS = THREE.RepeatWrapping;
+    tex45.wrapS = THREE.RepeatWrapping;
+    tex46.wrapS = THREE.RepeatWrapping;
+    tex47.wrapS = THREE.RepeatWrapping;
+    tex48.wrapS = THREE.RepeatWrapping;
+    tex50.wrapS = THREE.RepeatWrapping;
+    tex51.wrapS = THREE.RepeatWrapping;
+    tex52.wrapS = THREE.RepeatWrapping;
+    tex53.wrapS = THREE.RepeatWrapping;
+    tex54.wrapS = THREE.RepeatWrapping;
+    tex55.wrapS = THREE.RepeatWrapping;
+    tex56.wrapS = THREE.RepeatWrapping;
+    tex57.wrapS = THREE.RepeatWrapping;
+    tex58.wrapS = THREE.RepeatWrapping;
+
+    crosstex00.minFilter = THREE.LinearFilter;
+    crosstex01.minFilter = THREE.LinearFilter;
+    crosstex02.minFilter = THREE.LinearFilter;
+    crosstex03.minFilter = THREE.LinearFilter;
+    crosstex10.minFilter = THREE.LinearFilter;
+    crosstex11.minFilter = THREE.LinearFilter;
+    crosstex12.minFilter = THREE.LinearFilter;
+    crosstex13.minFilter = THREE.LinearFilter;
+    crosstex30.minFilter = THREE.LinearFilter;
+    crosstex31.minFilter = THREE.LinearFilter;
+    crosstex32.minFilter = THREE.LinearFilter;
+    crosstex33.minFilter = THREE.LinearFilter;
+    crosstex40.minFilter = THREE.LinearFilter;
+    crosstex41.minFilter = THREE.LinearFilter;
+    crosstex42.minFilter = THREE.LinearFilter;
+    crosstex43.minFilter = THREE.LinearFilter;
+
+    // crosstex00.wrapS = THREE.LinearFilter;
+    // crosstex01.wrapS = THREE.LinearFilter;
+    // crosstex02.wrapS = THREE.LinearFilter;
+    // crosstex03.wrapS = THREE.LinearFilter;
+    // crosstex10.wrapS = THREE.LinearFilter;
+    // crosstex11.wrapS = THREE.LinearFilter;
+    // crosstex12.wrapS = THREE.LinearFilter;
+    // crosstex13.wrapS = THREE.LinearFilter;
+    // crosstex30.wrapS = THREE.LinearFilter;
+    // crosstex31.wrapS = THREE.LinearFilter;
+    // crosstex32.wrapS = THREE.LinearFilter;
+    // crosstex33.wrapS = THREE.LinearFilter;
+    // crosstex40.wrapS = THREE.LinearFilter;
+    // crosstex41.wrapS = THREE.LinearFilter;
+    // crosstex42.wrapS = THREE.LinearFilter;
+    // crosstex43.wrapS = THREE.LinearFilter;
     // Add a new 16x16 array of textures for more textures
     this.textures = [
                     [crosstex00,crosstex01,crosstex02,crosstex03,
                     crosstex10,crosstex11,crosstex12,crosstex13,
                     crosstex30,crosstex31,crosstex32,crosstex33,
                     crosstex40,crosstex41,crosstex42,crosstex43],
-                    
+
                     [tex03,tex05,tex06,tex08,
                     tex13,tex15,tex16,tex18,
                     tex32,tex35,tex36,tex37,

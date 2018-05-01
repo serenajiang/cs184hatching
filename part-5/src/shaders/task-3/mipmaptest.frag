@@ -40,7 +40,6 @@ void main() {
   gl_FragColor = vec4(0.,0.,0.,0.);
   float tonew = tone - float(int(tone));
   float mipw = mipmap - float(int(mipmap));
-
   for (int i = 0; i<16; i++) {
     if (i==mipmaplevel + tonelevel) {
       gl_FragColor = gl_FragColor + (1.-tonew)*(1.-mipw)*texture2D(textures[i], fUv);

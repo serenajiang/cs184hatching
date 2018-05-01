@@ -103,6 +103,7 @@ class Renderer {
   };
 
   init() {
+
     this.geometries = [
       new THREE.TeapotBufferGeometry(4, 32, 32),
       new THREE.SphereBufferGeometry(5, 64, 64),
@@ -132,9 +133,9 @@ class Renderer {
 
     this.uniforms = {
       time: { type: 'f', value: 0 },
-      ambient: {type: "f", value: this.ambient},
-      diffuse: {type: "f", value: this.diffuse},
-      specular: {type: "f", value: this.specular},
+      ambient: {type: "f", value: .3},
+      diffuse: {type: "f", value: .75},
+      specular: {type: "f", value: 0.05},
     };
 
     this.scene = new THREE.Scene();
@@ -291,10 +292,12 @@ class Renderer {
   }
 
   render() {
+    if (this.material.uniforms.ambient != null) {
     this.material.uniforms.ambient.value = this.ambient;
     this.material.uniforms.specular.value = this.specular;
     this.material.uniforms.diffuse.value = this.diffuse;
     this.material.uniforms.textures.value = this.textures[this.texture_setting];
+  }
     this.renderer.render(this.scene, this.camera);
   }
 
