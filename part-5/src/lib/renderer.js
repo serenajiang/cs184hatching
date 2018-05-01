@@ -190,7 +190,12 @@ class Renderer {
     this.ambient = .3;
     this.diffuse = .75;
     this.specular = 0.05;
-
+    this.uniforms = {
+      time: { type: 'f', value: 0 },
+      ambient: {type: "f", value: this.ambient},
+      diffuse: {type: "f", value: this.diffuse},
+      specular: {type: "f", value: this.specular},
+    };
     this.scene = new THREE.Scene();
     this.scene.background = new THREE.Color( 0xffffff );
     this.camera = new THREE.PerspectiveCamera(75, this.width / this.height, 0.1, 1000);
@@ -207,20 +212,7 @@ class Renderer {
       antialias: true
     });
     this.initMaterials();
-
-    this.uniforms = {
-      time: { type: 'f', value: 0 },
-      ambient: {type: "f", value: this.ambient},
-      diffuse: {type: "f", value: this.diffuse},
-      specular: {type: "f", value: this.specular},
-    };
-
-    
-
-    
-
     this.addLight();
-    
     this.addMesh();
     this.initGUI();
 
