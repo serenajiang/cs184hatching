@@ -65,6 +65,7 @@ import texture58 from "../textures/pencil/58.png";
 var THREE = require('three')
 
 export default class extends Renderer {
+
   initMaterials() {
     if (!this.checkShader(vert, frag)) {
       this.setErrorScene();
@@ -190,9 +191,11 @@ export default class extends Renderer {
     this.uniforms['textures'] = {
       value: this.textures[0]
     }
+
     this.outline_material = this.createShaderMaterial(vertOutline, fragOutline);
     this.material = this.createShaderMaterial(vert, frag);
   }
+
   update(dt) {
     return;
   }
