@@ -195,6 +195,10 @@ import scriib1 from "../textures/scribbles/1.png";
 import scriib2 from "../textures/scribbles/3.png";
 import scriib4 from "../textures/scribbles/4.png";
 
+import piggy0 from "../textures/pigtails/lvl_0.png";
+import piggy3 from "../textures/pigtails/lvl_3.png";
+import piggy5 from "../textures/pigtails/lvl_5.png";
+
 
 var THREE = require('three')
 
@@ -205,6 +209,18 @@ export default class extends Renderer {
     //   this.setErrorScene();
     //   return;
     // }
+    var pig0 = new THREE.TextureLoader().load(piggy0);
+    var pig3 = new THREE.TextureLoader().load(piggy3);
+    var pig5 = new THREE.TextureLoader().load(piggy5);
+    pig0.minFilter = THREE.LinearFilter;
+    pig3.minFilter = THREE.LinearFilter;
+    pig5.minFilter = THREE.LinearFilter;
+    pig0.wrapS = THREE.RepeatWrapping;
+    pig3.wrapS = THREE.RepeatWrapping;
+    pig5.wrapS = THREE.RepeatWrapping;
+    pig0.wrapT = THREE.RepeatWrapping;
+    pig3.wrapT = THREE.RepeatWrapping;
+    pig5.wrapT = THREE.RepeatWrapping;
 
     var tex00 = new THREE.TextureLoader().load(texture00);
     var tex01 = new THREE.TextureLoader().load(texture01);
@@ -972,6 +988,10 @@ export default class extends Renderer {
                     scrib1,scrib1,scrib1,scrib1,
                     scrib2,scrib2,scrib2,scrib2,
                     scrib4,scrib4,scrib4,scrib4],
+                    [dots03,dots05,dots06,dots08,
+                    pig0,pig0,pig0,pig0,pig0,
+                    pig3,pig3,pig3,pig3,pig3,
+                    pig5,pig5,pig5,pig5,pig5],
                   ];
     this.uniforms['textures'] = {
       value: this.textures[0]

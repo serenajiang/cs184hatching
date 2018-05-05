@@ -134,6 +134,7 @@ class Renderer {
                     [1,2,2,2,4,1],
                     [1,1,1,1,4,1],
                     [1,1,1,1,4,1],
+                    [1,1,1,1,1,1]
                   ];
     this.focussed = true;
     this.stats.setMode(0);
@@ -261,7 +262,7 @@ class Renderer {
     gui.add(this, "diffuse", 0.0, 1.0);
     gui.add(this, "specular", 0.0, 1.0);
     // Change the name
-    gui.add(this, "texture_setting", {'Lines': 0, "Lines 2": 1, "Graffiti": 2, "Dots": 3, "Scribbles": 4});
+    gui.add(this, "texture_setting", {'Lines': 0, "Lines 2": 1, "Graffiti": 2, "Dots": 3, "Scribbles": 4, "Curls": 5});
   }
 
   begin() {
