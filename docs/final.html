@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<head>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+ <title>CS 184 Final Project</title>
+ <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+ <link href="https://fonts.googleapis.com/css?family=Open+Sans|Source+Sans+Pro" rel="stylesheet">
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css?family=Bungee+Hairline|Cinzel|Raleway" rel="stylesheet">
+<style type="text/css">
+	p, h5, li, figure {
+		font-family: "Comic Sans MS";
+	}
+	h1, h2, h3 {
+		text-align: center;
+		font-family: Papyrus;
+	}
+	.caption {
+		text-align: center;
+	}
+</style>
+</head>
+<body>
+<section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">CS 184 Final Project</h1>
+        </div>
+      </section>
+<div class="container">
+	<div>
+		<h2>Technical Approach</h2>
+		<h3>Generation of Tonal Art Maps</h5>
+		<p>Following the methods in (CITATION NEEDED), we decided to mimic shading through the use of Tonal Art Maps. Tonal Art Maps are similar to mipmaps, but in addition to containing images for different mipmap levels, it also contains images for different tones. Darker tones correspond to denser placement of strokes, and all the strokes in a lighter tone must appear in the darker tone.
+        <p>
+        	Some of our textures were computer-generated. We wrote a Python script to randomly generate textures given some input "stroke" image. Naively randomly placing strokes resulted in odd clumps of strokes, which were not perceived as random nor similar to real sketches. In order to combat this clumping, we implemented a sort of rejection sampling, in which a stroke placement was rejected if it would be placed in a location with an above average amount of noise. While this method still occasionally resulted in some apparent clustering at lighter tone levels, it generalized well compared to methods like stratified sampling, since we needed to be able to gradually add arbitrary numbers of strokes.
+      	</p>
+      	<figure>
+      		<figcaption>Rejection Sampling Pseudocode</figcaption>
+      		<pre>
+		    	<code>
+generate_tam(stroke, toneLevels):
+	numStrokes = 0
+	while numStrokes < max(toneLevels)
+		point = sample_point()
+		if avg_brightness(boundingBox) > avg_brightness(canvas):
+			draw_stroke(point)
+			if (numStrokes in toneLevels):
+				save(canvas)
+			numStrokes++
+		    	</code>
+		  	</pre>
+      	</figure>
+      	<figure>Insert picture</figure>
+      	<p>
+      		We also created a number of manually drawn textures, since random generation  limited us to textures consisting of many small stroke markings. To ensure that our textures lined up at the edges, we wrote a script to wrap drawn textures around.
+      	</p>
+      	<figure>Insert picture</figure>
+      	<h5>Problems</h5>
+      	<ul>
+      	<li>The most challenging part for the randomly generated textures was fine tuning the parameters of tones. The quality of the shader depended a lot on the number of strokes we chose for eadh tone, so a lot of time was spent experimenting with that.</li>
+      	<li>For manually drawn textures, it was difficult to create natural looking textures that lined up on the edges. The method we eventually came up with did line up the edges, but often made the edges too dark. This also took a lot of trial and error to practice drawing nice textures.</li></ul>
+      	<h3>Interpolation</h3>
+      	<p>We calculated the tone of each fragment using the Blinn-Phong shading model. The brightness resulting from this calculation was transformed into a value between 0 and 3, with 0 corresponding to the lightest tone and 3 to the darkest. We used 4 total tones, so to make sure that the transition between tones looked smooth and continuous, we linearly interpolated between neighboring tones to determine the color of each pixel.</p>
+      	<figure>
+      	INTERPOLATION PICS
+      	</figure>
+      	<p>The usual method of mipmapping, in which "far away" pixels are shaded using lower resolution versions of the texture, does not fit a hatching shader very well. Real artists use the same resolution of hatches throughout an entire artwork. Our mipmap levels were cropped versions of the larger texture. After calculating the mipmap level, we linearly interpolated between the two nearest levels. In this way, the final color of a point is linear interpolation between tones and mipmap levels.</p>
+      	<figure>
+      		MIPMAP PICTURES
+      	</figure>
+      	<h5>Problems</h5>
+      	<ul>
+      	<li>The biggest problem we faced was GLSL's limit on how many textures you can import. For this reason, we restricted ourselves to four tones and four mipmap levels. We did work a little on mipmaps that were contained entirely in one texture so that we could use more levels, but we did not have time to get this fully working.</li>
+      	<li>We also ran into a problem with quality of meshes. In some meshes, the texture became so skewed that the shading became very unrealistic. We did not explore ways to correct this, so our shader only really works well for relatively continuous meshes.</li>
+      	</ul>
+      	<h3>Outline Drawing</h3>
+      	<p>In real sketches, artists often draw an outline of an object before shading it in. To draw an outline, we used a method outlined in CITATION NEEDED</p>
+      	<p> In order to draw an outline around an object, we first created a slightly larger duplicate of the object. This object is shaded only when the surface normal points away from the camera. This prevents our duplicate object from obstructing the actual object we want to display. The only part we can see then, is the area that extends past our actual object due to the size difference. This area creates the effect of an outline.</p>
+      	<p>To make the outline appear more similar to a sketched outline, we shaded the outline object using a texture colored to mimic pencil shading. We also made this outline slightly transparent in lighter areas of the pencil texture to mimic the graininess of a pencil</p>
+      	<figure>Outline Pics</figure>
+      	<h5>Problems</h5>
+      	<p>We did initially try to draw an outline by blackening pixels whose normals were approximately orthogonal to the camera. However, this resulted in overly thick outlines in "flatter" areas such as the top of a teapot.</p>
+      	<h3>Lessons learned</h3>
+		<ul>
+			<li>Drawing is hard</li>
+			<li>FINISH</li>
+		</ul>
+	</div>
+	<div>
+		<h2>Results</h2>
+		INSERT HELLA PICTURES
+	</div>
+	<div>
+		<h3>References</h3>
+	</div>
+</div>
+</body>
+
+</html>

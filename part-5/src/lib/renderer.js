@@ -1,6 +1,8 @@
 // import THREE from '../lib/three';
 import dat from 'dat.gui';
-var THREE = require('three')
+import hat from '../models/prince-obsidian-hat.json';
+import bun from '../models/bun.json';
+var THREE = require('three');
 class Renderer {
 
   destroy() {
@@ -103,22 +105,35 @@ class Renderer {
   };
 
   init() {
+    var loader = new THREE.JSONLoader();
+    var bungeo = new THREE.BufferGeometry().fromGeometry(loader.parse(bun).geometry);
+    bungeo.scale(.03,.03,.03);
+    var hatgeo = new THREE.BufferGeometry().fromGeometry(loader.parse(hat).geometry);
+    hatgeo.scale(.3,.3,.3);
 
     this.geometries = [
       new THREE.TeapotBufferGeometry(4, 32, 32),
       new THREE.SphereBufferGeometry(5, 64, 64),
       new THREE.TorusBufferGeometry(5, 2, 50, 100),
       new THREE.CylinderBufferGeometry(3, 3, 8, 64, 100),
+      bungeo,
+      hatgeo
     ]
     this.outlines = [
       new THREE.TeapotBufferGeometry(4, 32, 32),
       new THREE.SphereBufferGeometry(5, 64, 64),
       new THREE.TorusBufferGeometry(5, 2, 50, 100),
       new THREE.CylinderBufferGeometry(3, 3, 8, 64, 100),
+      bungeo,
+      hatgeo
     ]
     this.repeats = [
-                    [2, 10, 10, 5],
-                    [1.5, 3, 3, 3],
+                    [1, 6, 4, 4,4,1],
+                    [1, 2, 2, 2,4,1],
+                    [1,2,2,2,4,1],
+                    [1,2,2,2,4,1],
+                    [1,1,1,1,4,1],
+                    [1,1,1,1,4,1],
                   ];
     this.focussed = true;
     this.stats.setMode(0);
@@ -239,14 +254,14 @@ class Renderer {
     gui.add(this, "light_setting", { 'Static': 0, 'Camera': 1 }).onChange( function(value) {
       that.addLight();
     });
-    gui.add(this, 'geometry_setting', {'Teapot': 0, 'Sphere': 1, "Torus" : 2, "Cylinder": 3}).onChange( function( value ) {
+    gui.add(this, 'geometry_setting', {'Teapot': 0, 'Sphere': 1, "Torus" : 2, "Cylinder": 3, "Bunny": 4, "Hat": 5}).onChange( function( value ) {
 					that.addMesh();
 				} );
     gui.add(this, "ambient", 0.0, 1.0);
     gui.add(this, "diffuse", 0.0, 1.0);
     gui.add(this, "specular", 0.0, 1.0);
     // Change the name
-    gui.add(this, "texture_setting", {'Lines': 0, "Lines 2": 1});
+    gui.add(this, "texture_setting", {'Lines': 0, "Lines 2": 1, "Graffiti": 2, "Dots": 3, "Scribbles": 4});
   }
 
   begin() {

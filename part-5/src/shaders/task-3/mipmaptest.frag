@@ -31,7 +31,7 @@ float getTone() {
   vec3 color = vec3(ambient/5.) + diffuse * lIntensity/r2 * max(0.0, dot(normalize(fNormal), normalize(lPosition)))
   + specular * lIntensity/r2 * pow(max(0.0, dot(normalize(fNormal), h)), 60.0);
   float brightness = dot(color, vec3(1./3.,1./3.,1./3.));
-  return 3.0 - max(0.0, min(.5999, brightness)) * 3.0/.6;
+  return 3.0 - max(0.10, min(.799, brightness)) * 3.0/.7;
 }
 
 void main() {
